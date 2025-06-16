@@ -28,6 +28,23 @@ export default async function HomePage() {
   const total = groq`count(*[_type=="post" ])`;
   const resTotal: number = await client.fetch(total);
 
+  if (posts.data.length === 0) {
+    return (
+      <section className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] pb-20">
+        <div className="mb-6">
+          <span className="text-6xl">📝</span>
+        </div>
+        <h2 className="text-2xl font-bold text-[#130F45] mb-2">
+          No blog posts yet!
+        </h2>
+        <p className="text-gray-600 text-center max-w-md">
+          Check back soon for updates, insights, and stories from the Leadworth
+          team.
+        </p>
+      </section>
+    );
+  }
+
   if (mode.isEnabled) {
     return (
       <Suspense fallback={<div>Loading preview...</div>}>

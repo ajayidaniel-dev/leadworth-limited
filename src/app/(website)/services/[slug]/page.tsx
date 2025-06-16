@@ -421,9 +421,13 @@ const serviceDetails = {
   },
 };
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const service = serviceDetails[params.slug as keyof typeof serviceDetails];
-
+export default function ServicePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = React.use(params);
+  const service = serviceDetails[slug as keyof typeof serviceDetails];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
