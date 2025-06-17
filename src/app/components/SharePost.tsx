@@ -5,16 +5,21 @@ import {
   WhatsappShareButton,
   LinkedinShareButton,
 } from "next-share";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Post } from "../../../typings.d";
 import { HiShare } from "react-icons/hi2";
 
 const SharePost = ({ slug, categories, description, title }: Post) => {
   const [copied, setCopied] = useState(false);
-  const url = process.env.NEXT_PUBLIC_VERCEL_URL?.includes("localhost")
-    ? "http://localhost:3000"
-    : `https://leadworthconsulting.com`;
-  const shareUrl = `${url}/blog/${slug.current}`;
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.origin);
+    }
+  }, []);
+
+  const shareUrl = `${currentUrl}/blog/${slug.current}`;
 
   const handleCopyLink = async () => {
     try {
