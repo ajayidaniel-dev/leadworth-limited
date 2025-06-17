@@ -7,6 +7,7 @@ import TrainingSection from "../components/TrainingSection";
 import PartnerSection from "../components/PartnerSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import AboutSection from "../components/AboutSection";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -196,18 +197,18 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <a
+              <Link
                 href="/contact"
                 className="inline-block px-8 py-4 bg-white text-[#F45625] rounded-xl font-semibold shadow-lg hover:bg-[#FFE5DC] hover:text-[#F45625] transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg"
               >
                 Get Started
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services"
                 className="inline-block px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 text-lg"
               >
                 Explore Services
-              </a>
+              </Link>
             </motion.div>
           </div>
           <motion.div
@@ -215,7 +216,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="relative w-[450px] h-[500px]"
+            className="relative w-[450px] h-[500px] p-6 md:p-0"
           >
             <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl transform -rotate-6" />
             <motion.div

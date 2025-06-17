@@ -11,7 +11,10 @@ import { HiShare } from "react-icons/hi2";
 
 const SharePost = ({ slug, categories, description, title }: Post) => {
   const [copied, setCopied] = useState(false);
-  const shareUrl = `https://techgix.vercel.app/blog/${slug.current}`;
+  const url = process.env.NEXT_PUBLIC_VERCEL_URL?.includes("localhost")
+    ? "http://localhost:3000"
+    : `https://leadworthconsulting.com`;
+  const shareUrl = `${url}/blog/${slug.current}`;
 
   const handleCopyLink = async () => {
     try {
@@ -56,7 +59,7 @@ const SharePost = ({ slug, categories, description, title }: Post) => {
           <FacebookShareButton
             url={shareUrl}
             quote={description}
-            hashtag={`#techgix ${categories.map((c) => `#${c.title}`).join(" ")}`}
+            hashtag={`#leadworthconsulting ${categories.map((c) => `#${c.title}`).join(" ")}`}
             className="transition-transform hover:scale-105"
           >
             <div className="flex items-center gap-2 px-5 py-2 bg-[#0165e1] text-white rounded-full shadow-md font-semibold text-base">

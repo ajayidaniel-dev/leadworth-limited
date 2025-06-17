@@ -16,7 +16,7 @@ const BlogPostCard = memo(({ post }: { post: Post }) => {
     () =>
       (post?.author &&
         post?.author[0]?.name.split(" ").slice(0, 2).join(" ")) ||
-      "Techgix",
+      "Leadworth",
     [post?.author]
   );
 

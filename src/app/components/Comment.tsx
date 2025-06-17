@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { client } from "../lib/sanity.client";
+import { client } from "@/app/lib/sanity.client";
 import { groq } from "next-sanity";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 
@@ -101,7 +101,11 @@ const Comment = ({ id }: Props) => {
                       {comment.name}
                     </h3>
                     <span className="text-xs text-gray-400">
-                      {new Date(comment._createdAt).toLocaleDateString()}
+                      {new Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      }).format(new Date(comment._createdAt))}
                     </span>
                   </div>
                   <p className="text-gray-700 bg-[#FFF7F3] rounded-lg px-4 py-2">

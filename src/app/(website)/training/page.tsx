@@ -160,7 +160,7 @@ export default function TrainingPage() {
       {/* Hero Section */}
       <section className="relative w-full min-h-[650px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/images/charlesdeluvio-Lks7vei-eAg-unsplash.jpg"
+          src="/charlesdeluvio-Lks7vei-eAg-unsplash.jpg"
           alt="Leadworth Training & Development"
           fill
           priority

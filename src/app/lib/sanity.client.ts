@@ -11,7 +11,7 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: false,
-  //token,
+  token,
   //stega: { studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL }
 });
 

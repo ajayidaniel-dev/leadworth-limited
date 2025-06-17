@@ -77,14 +77,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
     },
     alternates: {
-      canonical: `https://techgix.xyz/blog/${slug}`,
+      canonical: `https://leadworthconsulting.com/blog/${slug}`,
     },
     openGraph: {
       type: "article",
-      url: `https://techgix.xyz/blog/${slug}`,
+      url: `https://leadworthconsulting.com/blog/${slug}`,
       title: post.title,
       description: post.description,
-      siteName: "Techgix",
+      siteName: "Leadworth Consulting",
       images: [{ url: imageUrl }],
       publishedTime: post._createdAt,
       modifiedTime: post._updatedAt,
@@ -94,14 +94,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function PostHeader({ post }: { post: Post }) {
+  const formattedDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(post.publishedAt || post._createdAt));
   return (
     <section
-      className="relative rounded-2xl overflow-hidden mb-8 shadow-lg"
+      className="relative rounded-2xl overflow-hidden mb-8  shadow-lg"
       style={{
         background: `linear-gradient(90deg, ${NAVY} 60%, ${ORANGE} 100%)`,
       }}
     >
-      <div className="relative aspect-[21/9] w-full">
+      <div className="relative aspect-[21/9] w-full ">
         <Image
           className="object-cover"
           src={urlFor(post.mainImage).url()}
@@ -158,13 +163,7 @@ function PostHeader({ post }: { post: Post }) {
                       {author.name}
                     </h3>
                     <p className="text-xs sm:text-sm text-white/70">
-                      {new Date(
-                        post.publishedAt || post._createdAt
-                      ).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })}
+                      {formattedDate}
                     </p>
                   </div>
                 </Link>
@@ -185,11 +184,11 @@ const PostPage = async ({ params }: Props) => {
   if (!post) return notFound();
 
   return (
-    <article className="min-h-screen pb-20 bg-[#F8F9FB] ">
+    <article className="min-h-screen pb-20 bg-[#F8F9FB] pt-10 md:pt-20  ">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <PostHeader post={post} />
 
-        <div className="rounded-2xl bg-white shadow-xl p-4 sm:p-8 -mt-6 mb-12 relative z-10">
+        <div className="rounded-2xl bg-white mt-10 shadow-xl p-4 sm:p-8  mb-12 relative z-10">
           <div className="prose prose-lg prose-primary mx-auto max-w-none text-[#23272F]">
             <PortableText value={post.body} components={RichTextComponents} />
           </div>

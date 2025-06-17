@@ -110,7 +110,7 @@ function Marquee({ reverse = false }: { reverse?: boolean }) {
 export default function PartnerSection() {
   return (
     <section className="w-full bg-white/60 py-10">
-      <div className="max-w-4xl mx-auto px-4 md:px-8">
+      <div className="max-w-4xl mx-auto px-0 md:px-8">
         <h3 className="text-center text-[#130F45] text-xl font-semibold mb-6">
           Our Trusted Partners
         </h3>

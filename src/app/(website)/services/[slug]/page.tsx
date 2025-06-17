@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   HiArrowLeft,
@@ -17,7 +16,6 @@ import { motion } from "framer-motion";
 const serviceDetails = {
   recruitment: {
     title: "Recruitment Solutions",
-    heroImage: "/images/recruitment-hero.jpg",
     description:
       "Our comprehensive recruitment solutions help you find and attract the best talent for your organization. We combine industry expertise with innovative approaches to deliver exceptional results.",
     overview:
@@ -86,7 +84,6 @@ const serviceDetails = {
   },
   "hr-consulting": {
     title: "HR Consulting",
-    heroImage: "/images/hr-consulting-hero.jpg",
     description:
       "Transform your HR function with our expert consulting services. We help organizations optimize their HR processes, develop effective policies, and drive business growth through strategic HR solutions.",
     overview:
@@ -153,7 +150,6 @@ const serviceDetails = {
   },
   training: {
     title: "Training & Development",
-    heroImage: "/images/training-hero.jpg",
     description:
       "Empower your workforce with our comprehensive training and development programs. We design and deliver engaging learning experiences that drive performance and growth.",
     overview:
@@ -220,7 +216,6 @@ const serviceDetails = {
   },
   "background-checks": {
     title: "Background Checks",
-    heroImage: "/images/background-checks-hero.jpg",
     description:
       "Ensure safe and reliable hiring decisions with our comprehensive background screening services. We help you make informed choices while maintaining compliance and efficiency.",
     overview:
@@ -287,7 +282,6 @@ const serviceDetails = {
   },
   "hr-outsourcing": {
     title: "HR Outsourcing",
-    heroImage: "/images/hr-outsourcing-hero.jpg",
     description:
       "Streamline your HR operations with our comprehensive outsourcing solutions. Let us handle your HR administration while you focus on growing your business.",
     overview:
@@ -354,7 +348,6 @@ const serviceDetails = {
   },
   "employee-relations": {
     title: "Employee Relations",
-    heroImage: "/images/employee-relations-hero.jpg",
     description:
       "Build a positive workplace culture and resolve conflicts effectively with our employee relations services. We help you create an environment where employees thrive.",
     overview:
@@ -592,13 +585,6 @@ export default function ServicePage({
     <main className="min-h-screen bg-[#F8F9FB]">
       {/* Hero Section */}
       <section className="relative w-full min-h-[650px] flex items-center justify-center overflow-hidden">
-        <Image
-          src={service.heroImage}
-          alt={service.title}
-          fill
-          priority
-          className="object-cover"
-        />
         <div className="absolute inset-0 bg-gradient-to-br from-[#130F45]/90 via-[#130F45]/70 to-[#F45625]/40" />
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">

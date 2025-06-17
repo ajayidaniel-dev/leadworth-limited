@@ -1,9 +1,9 @@
 "use client";
 
-import { Post } from "@/typings";
+import { Post } from "../../../typings";
 import Image from "next/image";
-import urlFor from "@/lib/urlFor";
-import { timeAgo } from "@/lib/time";
+import urlFor from "../lib/urlFor";
+import { timeAgo } from "../lib/time";
 import ClientSideRoute from "./clientSideRoute";
 import { HiArrowSmallRight } from "react-icons/hi2";
 import { memo } from "react";

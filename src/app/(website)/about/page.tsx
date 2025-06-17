@@ -12,6 +12,7 @@ import {
 } from "react-icons/hi2";
 import { FaLinkedin } from "react-icons/fa";
 import TestimonialsSection from "@/app/components/TestimonialsSection";
+import Link from "next/link";
 
 const team = [
   {
@@ -114,7 +115,7 @@ export default function AboutPage() {
       <section className="relative w-full min-h-[650px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/patrick-tomasso-1NTFSnV-KLs-unsplash.jpg"
+          src="/patrick-tomasso-1NTFSnV-KLs-unsplash.jpg"
           alt="About Leadworth Consulting Limited"
           fill
           priority
@@ -205,8 +206,6 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <section className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           className="bg-gradient-to-br from-[#F45625]/10 to-[#130F45]/5 rounded-2xl p-8 shadow-lg flex flex-col items-center text-center"
         >
@@ -219,7 +218,6 @@ export default function AboutPage() {
           </p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="bg-gradient-to-br from-[#130F45]/10 to-[#F45625]/5 rounded-2xl p-8 shadow-lg flex flex-col items-center text-center"
@@ -288,14 +286,14 @@ export default function AboutPage() {
               </h4>
               <p className="text-[#F45625] font-semibold mb-2">{member.role}</p>
               <p className="text-gray-600 text-sm mb-2">{member.funFact}</p>
-              <a
+              <Link
                 href={member.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-[#130F45] hover:text-[#F45625] text-sm font-medium mt-2"
               >
                 <FaLinkedin className="w-4 h-4" /> LinkedIn
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -348,7 +346,7 @@ export default function AboutPage() {
             organization. Join hundreds of happy clients who trust Leadworth to
             transform their HR and unlock new possibilities.
           </motion.p>
-          <a href="/contact" className="inline-block">
+          <Link href="/contact" className="inline-block">
             <motion.button
               whileTap={{ scale: 0.97, rotate: 2 }}
               className="px-10 py-4 rounded-xl bg-white text-[#F45625] font-bold text-lg shadow-lg hover:bg-[#FFF7F3] active:scale-95 transition-all flex items-center gap-2"
@@ -358,7 +356,7 @@ export default function AboutPage() {
               </span>{" "}
               Contact Us
             </motion.button>
-          </a>
+          </Link>
         </motion.div>
       </section>
     </main>

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
@@ -106,12 +107,12 @@ export default function AboutSection() {
               <span className="text-[#130F45]">Candidates Placed</span>
             </motion.div>
           </div>
-          <a
+          <Link
             href="/about"
             className="inline-block mt-8 px-6 py-2 border-2 border-[#F45625] text-[#F45625] rounded-lg font-semibold hover:bg-[#F45625] hover:text-white transition-colors duration-300"
           >
             Learn More
-          </a>
+          </Link>
         </motion.div>
         {/* Why Choose Us grid */}
         <motion.div

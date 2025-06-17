@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const services = [
   {
@@ -172,7 +173,9 @@ export default function ServicesSection() {
                   strokeWidth="2"
                 />
               </svg>
-              <div className="text-white font-bold mt-1 text-xs">Recruit</div>
+              <div className="text-white font-bold mt-1 text-[10px] md:text-xs">
+                Recruit
+              </div>
             </div>
             <div className="absolute left-1/4 sm:left-1/3 top-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 bg-[#F45625]/90 rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-float2">
               <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
@@ -186,14 +189,18 @@ export default function ServicesSection() {
                   fill="#F45625"
                 />
               </svg>
-              <div className="text-white font-bold mt-1 text-xs">Train</div>
+              <div className="text-white font-bold mt-1 text-[10px] md:text-xs">
+                Train
+              </div>
             </div>
             <div className="absolute right-1/4 sm:right-1/3 top-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 bg-[#130F45]/90 rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-float3">
               <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
                 <circle cx="20" cy="20" r="20" fill="#fff" />
                 <path d="M20 10v20M10 20h20" stroke="#130F45" strokeWidth="3" />
               </svg>
-              <div className="text-white font-bold mt-1 text-xs">Verify</div>
+              <div className="text-white font-bold mt-1 text-[10px] md:text-xs">
+                Verify
+              </div>
             </div>
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 bg-[#FFE5DC] rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-float4">
               <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
@@ -203,7 +210,7 @@ export default function ServicesSection() {
                   fill="#F45625"
                 />
               </svg>
-              <div className="text-[#F45625] font-bold mt-1 text-xs">
+              <div className="text-[#F45625] font-bold mt-1 text-[10px] md:text-xs">
                 Outsource
               </div>
             </div>
@@ -244,12 +251,12 @@ export default function ServicesSection() {
           ))}
         </div>
         <div className="flex justify-center mt-10">
-          <a
+          <Link
             href="/services"
             className="px-8 py-3 bg-[#F45625] text-white rounded-lg font-semibold shadow hover:bg-[#e04a1f] transition-colors duration-300 text-lg"
           >
             See All Services
-          </a>
+          </Link>
         </div>
       </div>
     </section>

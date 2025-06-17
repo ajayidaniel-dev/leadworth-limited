@@ -343,10 +343,10 @@ export default function ServicesPage() {
   return (
     <main className="bg-[#F8F9FB] min-h-screen pb-20">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[700px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-[650px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/luis-villasmil-4V8uMZx8FYA-unsplash.jpg"
+          src="/luis-villasmil-4V8uMZx8FYA-unsplash.jpg"
           alt="Leadworth HR Services"
           fill
           priority
