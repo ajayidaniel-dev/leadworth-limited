@@ -14,6 +14,68 @@ import { motion } from "framer-motion";
 
 // Service details data
 const serviceDetails = {
+  audit: {
+    title: "HR Audit & ISO 30414:2018 Disclosure",
+    description:
+      "We provide comprehensive HR audit services aligned with the ISO 30414:2018 human capital reporting standard. Our goal is to help organizations assess, measure, and improve human capital performance and reporting.",
+    overview:
+      "Our HR audit and human capital disclosure services empower organizations to gain actionable insights from their workforce data. We help you implement ISO 30414:2018 guidelines to enhance transparency, compliance, and strategic HR decision-making.",
+    summary:
+      "Human capital reporting transforms HR data into actionable insights that drive performance and stakeholder trust. It involves analyzing data from various HR processes and systems and presenting it in clear, concise dashboards and reports. This supports strategic decisions in recruitment, retention, and engagement while aligning with ESG goals. Human capital disclosure, including metrics in financial reports, is becoming critical for organizations aiming to demonstrate people-first strategies and transparency.",
+    features: [
+      {
+        title: "Human Capital Disclosure & Reporting",
+        description:
+          "Transform HR data into insights and reports for internal and external stakeholders.",
+        details: [
+          "Data collection from various HR systems",
+          "Dashboard and report visualization",
+          "Trend analysis for strategic HR planning",
+          "Alignment with ESG and compliance needs",
+        ],
+      },
+      {
+        title: "HR Analytics and Strategic Insights",
+        description:
+          "Leverage HR analytics to understand employee behavior and improve performance.",
+        details: [
+          "Behavioral analytics for recruitment and retention",
+          "Performance and engagement tracking",
+          "Data-driven HR decision making",
+          "Predictive metrics for workforce planning",
+        ],
+      },
+      {
+        title: "ISO 30414:2018 Audit & Implementation",
+        description:
+          "Implement international best practices for human capital reporting.",
+        details: [
+          "Internal and external reporting guidance",
+          "58 workforce metrics across 11 areas",
+          "Tailored recommendations for org size",
+          "Global best practices integration",
+        ],
+      },
+    ],
+    benefits: [
+      "Standardized human capital reporting framework",
+      "Enhanced transparency and accountability",
+      "Data-driven HR strategy and planning",
+      "Improved employee engagement and retention",
+      "Alignment with organizational objectives",
+      "Support for legal and ethical HR practices",
+      "Better communication with external stakeholders",
+    ],
+    process: [
+      "Initial HR audit consultation",
+      "Gap analysis against ISO 30414 standards",
+      "HR data collection and analysis",
+      "Metric mapping and dashboard setup",
+      "Reporting structure development",
+      "Stakeholder review and compliance alignment",
+      "Final audit and continuous improvement recommendations",
+    ],
+  },
   recruitment: {
     title: "Recruitment Solutions",
     description:

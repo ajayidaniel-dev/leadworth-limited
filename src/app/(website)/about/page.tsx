@@ -16,95 +16,80 @@ import Link from "next/link";
 
 const team = [
   {
-    name: "Daniel Ajayi",
+    name: "Mr Wale Arowojobe",
     role: "Founder & CEO",
-    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
-    linkedin: "#",
+    img: "/ceo.jpg",
+    linkedin: "https://www.linkedin.com/in/wale-arowojobe/",
     funFact: "Loves hiking and jazz music.",
   },
-  {
-    name: "Aisha Bello",
-    role: "Head of HR Consulting",
-    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
-    linkedin: "#",
-    funFact: "Speaks 3 languages and is a coffee enthusiast.",
-  },
-  {
-    name: "Chinedu Okafor",
-    role: "Lead Recruiter",
-    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
-    linkedin: "#",
-    funFact: "Plays chess competitively.",
-  },
-  {
-    name: "Fatima Yusuf",
-    role: "Training Manager",
-    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
-    linkedin: "#",
-    funFact: "Avid traveler and foodie.",
-  },
+  // {
+  //   name: "Aisha Bello",
+  //   role: "Head of HR Consulting",
+  //   img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
+  //   linkedin: "#",
+  //   funFact: "Speaks 3 languages and is a coffee enthusiast.",
+  // },
+  // {
+  //   name: "Chinedu Okafor",
+  //   role: "Lead Recruiter",
+  //   img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
+  //   linkedin: "#",
+  //   funFact: "Plays chess competitively.",
+  // },
+  // {
+  //   name: "Fatima Yusuf",
+  //   role: "Training Manager",
+  //   img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
+  //   linkedin: "#",
+  //   funFact: "Avid traveler and foodie.",
+  // },
 ];
 
 const values = [
   {
-    icon: <HiOutlineHeart className="w-8 h-8 text-[#F45625]" />,
-    title: "People First",
-    desc: (
-      <>
-        <span className="font-semibold text-[#130F45] block mb-1">
-          Empowering People
-        </span>
-        We put people at the heart of everything we do, fostering growth,
-        well-being, and a sense of belonging. Our approach ensures every client
-        and employee feels valued, heard, and empowered to reach their full
-        potential.
-      </>
-    ),
+    icon: <HiOutlineStar className="w-8 h-8 text-[#F45625]" />, // Leadership
+    title: "Leadership",
+    desc: "Developing and supporting strong leaders who inspire and guide others.",
   },
   {
-    icon: <HiOutlineLightBulb className="w-8 h-8 text-[#130F45]" />,
-    title: "Innovation",
-    desc: (
-      <>
-        <span className="font-semibold text-[#130F45] block mb-1">
-          Forward-Thinking Solutions
-        </span>
-        We embrace creativity and forward-thinking to deliver modern HR
-        solutions. By staying ahead of industry trends and leveraging new
-        technologies, we help our clients adapt, grow, and thrive in a rapidly
-        changing world.
-      </>
-    ),
-  },
-  {
-    icon: <HiOutlineUserGroup className="w-8 h-8 text-[#00B4D8]" />,
-    title: "Collaboration",
-    desc: (
-      <>
-        <span className="font-semibold text-[#130F45] block mb-1">
-          Stronger Together
-        </span>
-        We believe in teamwork, open communication, and building lasting
-        partnerships. Our collaborative spirit extends to our clients, partners,
-        and within our own team, ensuring every project benefits from diverse
-        perspectives and shared expertise.
-      </>
-    ),
-  },
-  {
-    icon: <HiOutlineStar className="w-8 h-8 text-[#F9A826]" />,
+    icon: <HiOutlineSparkles className="w-8 h-8 text-[#130F45]" />, // Excellence
     title: "Excellence",
-    desc: (
-      <>
-        <span className="font-semibold text-[#130F45] block mb-1">
-          Raising the Bar
-        </span>
-        We strive for the highest standards in service, results, and client
-        satisfaction. Our commitment to excellence drives us to exceed
-        expectations, deliver measurable outcomes, and continuously improve in
-        everything we do.
-      </>
-    ),
+    desc: "Pursuing the highest quality in products, services, and performance.",
+  },
+  {
+    icon: <HiOutlineUserGroup className="w-8 h-8 text-[#00B4D8]" />, // Accountability
+    title: "Accountability",
+    desc: "Taking responsibility for one’s actions and ensuring the achievement of goals.",
+  },
+  {
+    icon: <HiOutlineHeart className="w-8 h-8 text-[#F45625]" />, // Dependability
+    title: "Dependability",
+    desc: "Fostering accountability and building trust as we consistently deliver on our commitments.",
+  },
+  {
+    icon: <HiOutlineLightBulb className="w-8 h-8 text-[#130F45]" />, // Work-Life Balance
+    title: "Work-Life Balance",
+    desc: "Promoting work-life balance and overall well-being for employees.",
+  },
+  {
+    icon: <HiOutlineGlobeAlt className="w-8 h-8 text-[#00B4D8]" />, // Ownership
+    title: "Ownership",
+    desc: "Encouraging employees to take initiative and make decisions that drive the company forward.",
+  },
+  {
+    icon: <HiOutlineHeart className="w-8 h-8 text-[#F45625]" />, // Respect
+    title: "Respect",
+    desc: "Treating everyone with dignity, empathy, and fairness, regardless of their background or position.",
+  },
+  {
+    icon: <HiOutlineUserGroup className="w-8 h-8 text-[#00B4D8]" />, // Team Work
+    title: "Team Work",
+    desc: "Promoting teamwork, open communication, and cooperation across the organization.",
+  },
+  {
+    icon: <HiOutlineHeart className="w-8 h-8 text-[#F45625]" />, // Health
+    title: "Health",
+    desc: "Focusing on both the physical and mental health of the organization for improved employee engagement and increase ROI on HC cost.",
   },
 ];
 
@@ -166,20 +151,36 @@ export default function AboutPage() {
             Who We Are
           </h2>
           <p className="text-lg text-gray-700 mb-4">
-            Leadworth Consulting Limited is a leading HR consultancy firm based
-            in Lagos, Nigeria, serving clients nationwide and internationally.
-            Since our founding, we&apos;ve been dedicated to helping
-            organizations unlock their full potential by providing expert HR
-            solutions tailored to their unique needs. Our team of passionate
-            professionals brings decades of combined experience in recruitment,
-            HR consulting, training, and employee relations.
+            Leadworth Consulting Limited (LWC) was incorporated in 2022 as a
+            recruitment and Human Resources (HR) consulting firm with the
+            Corporate Affairs Commission. LWC is a Nigerian company which
+            specializes in HR management consulting and Organizational
+            competence development, Training, ISO 30414 certification,
+            Recruitment services, Manpower Outsourcing, employee background
+            verification services, employee assistance services,
+            coaching/mentoring services, logistics and facilities Management
+            services. In addition to the extensive industrial experience in
+            Human Resource Management and organizational logistics management,
+            we have pool of experts in our faculty specializing in specific
+            areas that serve our growing clientele in various sectors of the
+            economy.
           </p>
           <p className="text-lg text-gray-700">
-            We believe that people are the heart of every successful business.
-            That&apos;s why we focus on building strong partnerships, fostering
-            innovation, and delivering measurable results for our clients.
-            Whether you&apos;re a startup or a multinational, we&apos;re here to
-            help you build a thriving, future-ready workforce.
+            At LWC, we work together with companies as smart partners in
+            providing hands-on solutions to help solve day to day business
+            challenges by developing their human capital with focus on creating
+            lasting value and increase productivity. We believe in holistic
+            approach-becoming a part of our client’s business and gaining as
+            much in-depth knowledge about their operations and challenges so as
+            to help them resolve them and re-engineer their system. Our focus is
+            to support our valued clients in meeting their needs, achieving
+            their goals in improving their business results. Our philosophy is
+            to add value to our clients by being more than just providers of HR
+            and corporate services but also partners to our clients. By
+            embracing and exceeding our clients’ expectations, the success of
+            each client becomes the success of LWC. This level of service is
+            achieved by dedicating a team of professionals to meet the unique
+            needs of each client. LWC operates from its head office in Ibadan.
           </p>
         </motion.div>
         {/* Bottom Stats */}
@@ -212,9 +213,9 @@ export default function AboutPage() {
           <HiOutlineGlobeAlt className="w-12 h-12 text-[#F45625] mb-4" />
           <h3 className="text-xl font-bold text-[#130F45] mb-2">Our Mission</h3>
           <p className="text-gray-700">
-            To empower organizations and individuals to achieve their goals by
-            delivering innovative, people-centric HR solutions that drive
-            growth, engagement, and long-term success.
+            Our mission is to provide the highest level of support to
+            organizations and business leaders in building people and
+            organization’s capabilities.
           </p>
         </motion.div>
         <motion.div
@@ -225,9 +226,9 @@ export default function AboutPage() {
           <HiOutlineSparkles className="w-12 h-12 text-[#130F45] mb-4" />
           <h3 className="text-xl font-bold text-[#130F45] mb-2">Our Vision</h3>
           <p className="text-gray-700">
-            To be the most trusted and innovative HR partner, inspiring positive
-            change and building workplaces where people and businesses flourish
-            together.
+            To be a key provider of strategic consulting services that inspires
+            and empowers people and organizations to push their limits in
+            performance.
           </p>
         </motion.div>
       </section>
@@ -263,19 +264,20 @@ export default function AboutPage() {
         <h2 className="text-2xl sm:text-3xl font-extrabold text-[#130F45] mb-8 text-center">
           Meet the Team
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        {/* center this incase it is just one */}
+        <div className="flex justify-center flex-wrap gap-8">
           {team.map((member, idx) => (
             <motion.div
               key={member.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 p-6 flex flex-col items-center text-center hover:shadow-2xl hover:border-[#F45625] transition-all duration-300 group"
+              className="w-full sm:w-[45%] md:w-[22%] bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 p-6 flex flex-col items-center text-center hover:shadow-2xl hover:border-[#F45625] transition-all duration-300 group"
             >
-              <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-[#F45625]/20 group-hover:border-[#F45625] transition-all">
+              <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-[#F45625]/20 group-hover:border-[#F45625] transition-all">
                 <Image
-                  width={96}
-                  height={96}
+                  width={150}
+                  height={150}
                   src={member.img}
                   alt={member.name}
                   className="object-cover w-full h-full"

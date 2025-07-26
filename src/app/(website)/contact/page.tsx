@@ -32,7 +32,7 @@ const faqs = [
   {
     question: "What services do you offer?",
     answer:
-      "Leadworth Consulting Limited provides a comprehensive suite of HR solutions, including:\n\n• Recruitment: Executive search, graduate hiring, onboarding, and diversity & inclusion.\n• HR Consulting: Audits, policy development, compliance, and change management.\n• Training & Development: Leadership workshops, soft skills, e-learning, and team building.\n• Background Checks: Reference, criminal record, credential, and employment verification.\n• HR Outsourcing: Payroll, benefits, employee records, and HR helpdesk.\n• Employee Relations: Conflict resolution, engagement surveys, performance management, and wellness programs.\n\nWe tailor our services to organizations of all sizes and industries.",
+      "Leadworth Consulting Limited provides a comprehensive suite of HR solutions, including:\n\n• Recruitment: Executive search, graduate hiring, onboarding, and diversity & inclusion.\n• HR Consulting: HR Audit, ISO 30414:2018 Audit and Disclosure, HR Consulting: Audits, policy development, compliance, and change management.\n• Training & Development: Leadership workshops, soft skills, e-learning, and team building.\n• Background Checks: Reference, criminal record, credential, and employment verification.\n• HR Outsourcing: Payroll, benefits, employee records, and HR helpdesk.\n• Employee Relations: Conflict resolution, engagement surveys, performance management, and wellness programs.\n\nWe tailor our services to organizations of all sizes and industries. Employee performance management, and wellness programs.",
   },
   {
     question: "Can I schedule a free consultation?",
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "Where are you located?",
     answer:
-      "Our head office is located at 123 Business Avenue, Lagos, Nigeria. However, we proudly serve clients nationwide and internationally. Many of our services can be delivered remotely, and we're happy to arrange virtual meetings, workshops, or consultations to suit your location and schedule. If you'd like to visit us in person, please contact us to book an appointment.",
+      "Our Head Office is located at 1 Oritoke Alade Street, Arulogun Road, Ojoo, Ibadan, Oyo State, Nigeria. Mobile Numbers: +234 803 723 3326; +234 707 395 7355.",
   },
 ];
 
@@ -473,7 +473,10 @@ export default function ContactPage() {
               </div>
               <div className="flex items-center gap-3">
                 <FaMapMarkerAlt className="w-5 h-5 text-[#F45625]" />
-                <span>123 Business Avenue, Lagos, Nigeria</span>
+                <span>
+                  1 Oritoke Alade Street, Arulogun Road, Ojoo, Ibadan, Oyo
+                  State, Nigeria
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <HiOutlineEnvelope className="w-6 h-6 text-[#F45625]" />
@@ -487,10 +490,16 @@ export default function ContactPage() {
               <div className="flex items-center gap-3">
                 <HiOutlinePhone className="w-6 h-6 text-[#F45625]" />
                 <a
-                  href="tel:+2348000000000"
+                  href="tel:+2348037233326"
                   className="underline hover:text-[#F45625]"
                 >
-                  +234 800 000 0000
+                  +234 803 723 3326;
+                </a>
+                <a
+                  className="underline hover:text-[#F45625]"
+                  href="tel:+2347073957355"
+                >
+                  +234 707 395 7355
                 </a>
               </div>
             </div>

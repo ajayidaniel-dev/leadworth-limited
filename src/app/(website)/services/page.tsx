@@ -15,12 +15,25 @@ import {
   HiOutlinePresentationChartLine,
   HiOutlineWrenchScrewdriver,
   HiOutlinePhone,
+  HiOutlineDocumentPlus,
 } from "react-icons/hi2";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const services = [
+  {
+    icon: <HiOutlineDocumentPlus className="w-8 h-8 text-[#F45625]" />,
+    title: "HR Audit & ISO 30414",
+    desc: "Assess, measure, and report workforce performance with global HR audit standards.",
+    features: [
+      "Human capital disclosure",
+      "ISO 30414 audit",
+      "Strategic HR analytics",
+      "Data-driven decision making",
+    ],
+    cta: "/services/audit",
+  },
   {
     icon: <HiOutlineUserCircle className="w-8 h-8 text-[#F45625]" />,
     title: "Recruitment",

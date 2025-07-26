@@ -4,6 +4,33 @@ import Link from "next/link";
 
 const services = [
   {
+    title: "HR Audit & ISO 30414",
+    desc: "We help organizations measure, manage, and report workforce performance with globally recognized standards. Ensure compliance, transparency, and data-driven HR strategies with ISO 30414 human capital reporting.",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <rect x="10" y="10" width="28" height="28" rx="4" fill="#F45625" />
+        <path
+          d="M16 20H32"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16 26H32"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16 32H24"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
     title: "Manpower Recruitment",
     desc: "Connecting top talent with leading employers for lasting success. We manage the entire recruitment process, from sourcing and screening to placement and onboarding, ensuring you get the best fit for your organization.",
     icon: (
@@ -22,25 +49,25 @@ const services = [
       </svg>
     ),
   },
-  {
-    title: "Training & Development",
-    desc: "Empowering teams with skills for tomorrow's workplace. Our programs are tailored to boost leadership, digital skills, and communication, helping your staff grow and thrive in a dynamic business world.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-        <rect x="8" y="12" width="32" height="20" rx="4" fill="#F45625" />
-        <rect
-          x="8"
-          y="12"
-          width="32"
-          height="20"
-          rx="4"
-          stroke="#130F45"
-          strokeWidth="2"
-        />
-        <rect x="20" y="32" width="8" height="4" rx="2" fill="#00AEEF" />
-      </svg>
-    ),
-  },
+  // {
+  //   title: "Training & Development",
+  //   desc: "Empowering teams with skills for tomorrow's workplace. Our programs are tailored to boost leadership, digital skills, and communication, helping your staff grow and thrive in a dynamic business world.",
+  //   icon: (
+  //     <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+  //       <rect x="8" y="12" width="32" height="20" rx="4" fill="#F45625" />
+  //       <rect
+  //         x="8"
+  //         y="12"
+  //         width="32"
+  //         height="20"
+  //         rx="4"
+  //         stroke="#130F45"
+  //         strokeWidth="2"
+  //       />
+  //       <rect x="20" y="32" width="8" height="4" rx="2" fill="#00AEEF" />
+  //     </svg>
+  //   ),
+  // },
   {
     title: "Background Checks",
     desc: "Ensuring trust and safety with thorough verification. We conduct comprehensive background checks, reference verification, and credential validation to protect your business and reputation.",

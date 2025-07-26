@@ -69,61 +69,16 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="flex-1 flex justify-center mb-8 md:mb-0 z-10 w-full"
+            className="flex-1 flex justify-center  mb-8 md:mb-0 z-10 w-full"
           >
-            {/* Fun HR dashboard mockup with avatars and cards */}
-            <div className="relative w-full max-w-md h-[320px] md:h-[360px] flex items-center justify-center">
-              {/* Main dashboard card */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-44 bg-white rounded-2xl shadow-xl border-2 border-[#F45625]/30 flex flex-col items-center justify-center p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-3 h-3 rounded-full bg-[#F45625]" />
-                  <div className="w-3 h-3 rounded-full bg-[#00AEEF]" />
-                  <div className="w-3 h-3 rounded-full bg-[#130F45]" />
-                </div>
-                <div className="w-20 h-20 rounded-full bg-[#FFE5DC] flex items-center justify-center mb-2">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="20" r="20" fill="#F45625" />
-                    <text
-                      x="50%"
-                      y="55%"
-                      textAnchor="middle"
-                      fill="#fff"
-                      fontSize="18"
-                      fontWeight="bold"
-                      dy=".3em"
-                    >
-                      HR
-                    </text>
-                  </svg>
-                </div>
-                <div className="font-bold text-[#130F45] text-lg">
-                  Welcome, Team!
-                </div>
-                <div className="text-[#333333] text-xs">
-                  Your HR dashboard is ready
-                </div>
-              </div>
-              {/* Floating avatar cards */}
-              <div className="absolute -top-8 left-2 w-24 h-24 bg-[#00AEEF]/90 rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-bounce-slow">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="16" r="12" fill="#fff" />
-                  <ellipse cx="20" cy="32" rx="12" ry="6" fill="#F45625" />
-                </svg>
-                <div className="text-white font-bold mt-1">Jane</div>
-              </div>
-              <div className="absolute -bottom-8 right-2 w-24 h-24 bg-[#F45625]/90 rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-bounce-slow2">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="16" r="12" fill="#fff" />
-                  <ellipse cx="20" cy="32" rx="12" ry="6" fill="#00AEEF" />
-                </svg>
-                <div className="text-white font-bold mt-1">Sam</div>
-              </div>
-              {/* Floating notification card */}
-              <div className="absolute top-8 right-0 w-32 h-16 bg-[#130F45] rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-float">
-                <div className="text-white font-bold">+3 New Hires</div>
-                <div className="text-[#FFE5DC] text-xs">This week</div>
-              </div>
-            </div>
+            <Image
+              src="/homeIcon.png"
+              alt="Home Icon"
+              width={500}
+              height={500}
+              className="w-full max-w-md h-auto rounded-2xl"
+              priority
+            />
           </motion.div>
         </div>
       </section>

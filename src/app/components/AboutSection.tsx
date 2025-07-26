@@ -37,10 +37,9 @@ export default function AboutSection() {
               Our Mission
             </h3>
             <p className="text-[#333333] mb-4">
-              To empower organizations and individuals by providing innovative,
-              reliable, and people-centric HR solutions. We believe in building
-              lasting partnerships and making a positive impact in every
-              business we serve.
+              Our mission is to provide the highest level of support to
+              organizations and business leaders in building people and
+              organization’s capabilities.
             </p>
           </motion.div>
           <motion.div
@@ -50,14 +49,13 @@ export default function AboutSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-left"
           >
-            <h3 className="text-2xl font-bold text-[#130F45] mb-4 mt-8">
-              Our Story
+            <h3 className="text-2xl font-bold text-[#130F45] mb-4 ">
+              Our Vision
             </h3>
             <p className="text-[#333333]">
-              Founded by passionate HR professionals, Leadworth Consulting
-              Limited has grown from a small team to a trusted partner for
-              companies across industries. Our journey is defined by our
-              commitment to excellence, integrity, and continuous learning.
+              To be a key provider of strategic consulting services that
+              inspires and empowers people and organizations to push their
+              limits in performance.
             </p>
           </motion.div>
         </div>
@@ -70,10 +68,15 @@ export default function AboutSection() {
           className="bg-white rounded-xl shadow-md p-8 text-center max-w-2xl mx-auto border-t-4 border-[#130F45] mb-12"
         >
           <p className="text-[#333333] text-lg mb-4">
-            Leadworth Consulting Limited is a leading HR consultancy dedicated
-            to connecting talent with opportunity. Our team brings years of
-            experience in recruitment, training, and HR solutions for businesses
-            of all sizes.
+            Leadworth Consulting Limited (LWC) was incorporated in 2022 as a
+            recruitment and Human Resources (HR) consulting firm with the
+            Corporate Affairs Commission. LWC is a Nigerian company which
+            specializes in HR management consulting and Organizational
+            competence development, Training, ISO 30414 certification,
+            Recruitment services, Manpower Outsourcing, employee background
+            verification services, employee assistance services,
+            coaching/mentoring services, logistics and facilities Management
+            services.
           </p>
           <div className="flex flex-wrap justify-center gap-6 mt-6">
             <motion.div
