@@ -11,7 +11,7 @@ import {
   HiOutlineStar,
 } from "react-icons/hi2";
 import { FaLinkedin } from "react-icons/fa";
-import TestimonialsSection from "@/app/components/TestimonialsSection";
+// import TestimonialsSection from "@/app/components/TestimonialsSection";
 import Link from "next/link";
 
 const team = [
@@ -300,7 +300,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
 
       {/* CTA Section */}
       <section className="relative max-w-7xl mx-auto px-4 py-16 flex items-center justify-center">

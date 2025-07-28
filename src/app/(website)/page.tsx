@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import ServicesSection from "../components/ServicesSection";
 import TrainingSection from "../components/TrainingSection";
-import PartnerSection from "../components/PartnerSection";
-import TestimonialsSection from "../components/TestimonialsSection";
+// import PartnerSection from "../components/PartnerSection";
+// import TestimonialsSection from "../components/TestimonialsSection";
 import AboutSection from "../components/AboutSection";
 import Link from "next/link";
 
@@ -86,7 +86,7 @@ export default function Home() {
       {/* What We Do */}
       <ServicesSection />
       {/*  Partner Section */}
-      <PartnerSection />
+      {/* <PartnerSection /> */}
       {/* About Us (Short) */}
       <AboutSection />
 
@@ -94,7 +94,7 @@ export default function Home() {
       <TrainingSection />
 
       {/* Testimonials */}
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
 
       {/* Call to Action / Contact */}
       <section
