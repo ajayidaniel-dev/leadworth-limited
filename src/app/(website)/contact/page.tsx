@@ -11,16 +11,24 @@ import {
 import {
   FaLinkedin,
   FaTwitter,
-  FaFacebook,
+  // FaFacebook,
   FaInstagram,
   FaMapMarkerAlt,
 } from "react-icons/fa";
 
 const socialLinks = [
-  { icon: <FaLinkedin />, label: "LinkedIn", url: "https://linkedin.com" },
-  { icon: <FaTwitter />, label: "Twitter", url: "https://twitter.com" },
-  { icon: <FaFacebook />, label: "Facebook", url: "https://facebook.com" },
-  { icon: <FaInstagram />, label: "Instagram", url: "https://instagram.com" },
+  {
+    icon: <FaLinkedin />,
+    label: "LinkedIn",
+    url: "https://www.linkedin.com/company/leadworth-consulting-limited/",
+  },
+  { icon: <FaTwitter />, label: "Twitter", url: "https://x.com/LeadWorth_C" },
+  // { icon: <FaFacebook />, label: "Facebook", url: "https://facebook.com" },
+  {
+    icon: <FaInstagram />,
+    label: "Instagram",
+    url: "https://www.instagram.com/leadworthconsulting",
+  },
 ];
 
 const faqs = [
