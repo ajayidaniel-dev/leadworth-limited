@@ -20,7 +20,6 @@ const team = [
     role: "Founder & CEO",
     img: "/ceo.jpg",
     linkedin: "https://www.linkedin.com/in/wale-arowojobe/",
-    funFact: "Loves hiking and jazz music.",
   },
   // {
   //   name: "Aisha Bello",
@@ -140,48 +139,218 @@ export default function AboutPage() {
       </section>
 
       {/* About the Company */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
+      <section className="max-w-6xl mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="bg-white/90 rounded-2xl shadow-xl border-2 border-[#F45625]/10 p-10 text-center"
+          className="text-center mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#130F45] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#130F45] mb-4">
             Who We Are
           </h2>
-          <p className="text-lg text-gray-700 mb-4">
-            Leadworth Consulting Limited (LWC) was incorporated in 2022 as a
-            recruitment and Human Resources (HR) consulting firm with the
-            Corporate Affairs Commission. LWC is a Nigerian company which
-            specializes in HR management consulting and Organizational
-            competence development, Training, ISO 30414 certification,
-            Recruitment services, Manpower Outsourcing, employee background
-            verification services, employee assistance services,
-            coaching/mentoring services, logistics and facilities Management
-            services. In addition to the extensive industrial experience in
-            Human Resource Management and organizational logistics management,
-            we have pool of experts in our faculty specializing in specific
-            areas that serve our growing clientele in various sectors of the
-            economy.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            A leading HR consulting firm dedicated to transforming organizations
+            through innovative people solutions.
           </p>
-          <p className="text-lg text-gray-700">
-            At LWC, we work together with companies as smart partners in
-            providing hands-on solutions to help solve day to day business
-            challenges by developing their human capital with focus on creating
-            lasting value and increase productivity. We believe in holistic
-            approach-becoming a part of our client’s business and gaining as
-            much in-depth knowledge about their operations and challenges so as
-            to help them resolve them and re-engineer their system. Our focus is
-            to support our valued clients in meeting their needs, achieving
-            their goals in improving their business results. Our philosophy is
-            to add value to our clients by being more than just providers of HR
-            and corporate services but also partners to our clients. By
-            embracing and exceeding our clients’ expectations, the success of
-            each client becomes the success of LWC. This level of service is
-            achieved by dedicating a team of professionals to meet the unique
-            needs of each client. LWC operates from its head office in Ibadan.
-          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Company Overview */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="bg-gradient-to-br from-[#F45625]/10 to-[#130F45]/5 rounded-2xl p-8 border-2 border-[#F45625]/20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-[#F45625] rounded-xl flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#130F45]">
+                Company Overview
+              </h3>
+            </div>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              <strong className="text-[#F45625]">
+                Leadworth Consulting Limited (LWC)
+              </strong>{" "}
+              was incorporated in 2022 as a recruitment and Human Resources (HR)
+              consulting firm with the Corporate Affairs Commission.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              We are a Nigerian company specializing in comprehensive HR
+              solutions that drive organizational success and employee
+              engagement.
+            </p>
+          </motion.div>
+
+          {/* Our Expertise */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="bg-gradient-to-br from-[#00AEEF]/10 to-[#130F45]/5 rounded-2xl p-8 border-2 border-[#00AEEF]/20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-[#00AEEF] rounded-xl flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#130F45]">
+                Our Expertise
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  HR Management Consulting
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  Recruitment Services
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  Training & Development
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  ISO 30414 Certification
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  Manpower Outsourcing
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  Background Verification
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Our Approach */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="bg-gradient-to-br from-[#130F45]/5 to-[#F45625]/10 rounded-2xl p-8 border-2 border-[#130F45]/20 mb-12"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-[#130F45] rounded-xl flex items-center justify-center">
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-[#130F45]">Our Approach</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="text-lg font-semibold text-[#F45625] mb-3">
+                Smart Partnership
+              </h4>
+              <p className="text-gray-700 leading-relaxed">
+                We work together with companies as smart partners, providing
+                hands-on solutions to solve day-to-day business challenges by
+                developing their human capital with focus on creating lasting
+                value and increased productivity.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-[#00AEEF] mb-3">
+                Holistic Solutions
+              </h4>
+              <p className="text-gray-700 leading-relaxed">
+                We believe in a holistic approach—becoming part of our
+                client&apos;s business and gaining in-depth knowledge about
+                their operations and challenges to help them resolve issues and
+                re-engineer their systems.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Our Philosophy */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="bg-gradient-to-br from-[#F45625]/10 to-[#00AEEF]/5 rounded-2xl p-8 border-2 border-[#F45625]/20"
+        >
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-[#130F45] mb-4">
+              Our Philosophy
+            </h3>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              We add value to our clients by being more than just providers of
+              HR and corporate services—we are{" "}
+              <strong className="text-[#F45625]">
+                partners to our clients
+              </strong>
+              . By embracing and exceeding our clients&apos; expectations, the
+              success of each client becomes the success of LWC.
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-[#F45625] rounded-full"></div>
+              <span>Head Office: Ibadan</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-[#00AEEF] rounded-full"></div>
+              <span>Established: 2022</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-[#130F45] rounded-full"></div>
+              <span>Nigerian Company</span>
+            </div>
+          </div>
         </motion.div>
         {/* Bottom Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4  gap-8">
@@ -287,7 +456,7 @@ export default function AboutPage() {
                 {member.name}
               </h4>
               <p className="text-[#F45625] font-semibold mb-2">{member.role}</p>
-              <p className="text-gray-600 text-sm mb-2">{member.funFact}</p>
+              {/* <p className="text-gray-600 text-sm mb-2">{member.funFact}</p> */}
               <Link
                 href={member.linkedin}
                 target="_blank"

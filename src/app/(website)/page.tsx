@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F5F6FA]">
+    <div className="min-h-screen  bg-[#F5F6FA]">
       {/* Hero Section */}
       <section
         style={{
@@ -20,20 +20,22 @@ export default function Home() {
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-        className="relative w-full overflow-hidden min-h-[600px]  "
+        className="relative w-full overflow-hidden  min-h-[600px] flex items-center"
       >
+        {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#130F45]/80 via-[#130F45]/60 to-[#F45625]/40 z-10" />
 
         {/* Decorative Shapes */}
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#00AEEF]/20 rounded-full blur-3xl z-0" />
         <div className="absolute top-10 right-10 w-32 h-32 bg-[#F45625]/20 rounded-full blur-2xl z-0" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-[#FFE5DC]/80 rounded-t-full blur-2xl z-0" />
-        <div className="relative max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 py-16 md:py-24 lg:py-44 gap-8 z-10">
+
+        <div className="relative max-w-5xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 py-16 md:py-24 gap-8 z-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex-1 text-center md:text-left z-10"
+            className=" text-center md:text-left  flex-1"
           >
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -41,15 +43,15 @@ export default function Home() {
               transition={{ duration: 1 }}
               className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg"
             >
-              HR Solutions <span className="text-white">Reimagined</span>
+              HR Solutions <span className="text-[#F45625]">Reimagined</span>
               <br />
-              For <span className="text-[#00AEEF]">Modern Teams</span>
+              For <span className="text-[#00AEEF]">Modern</span> Teams
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-50 mb-8 max-w-xl mx-auto md:mx-0"
+              className="text-lg md:text-xl text-white/90 mb-8 max-w-xl mx-auto md:mx-0"
             >
               Discover a new era of recruitment, training, and HR consulting. We
               help you build, grow, and empower your workforce with creativity
@@ -79,7 +81,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="flex-1 flex justify-center mb-8 md:mb-0 z-10 w-full"
+            className=" flex justify-center mb-8 md:mb-0 z-10 flex-1 w-full"
           >
             {/* Fun HR dashboard mockup with avatars and cards */}
             <div className="relative w-full max-w-md h-[320px] md:h-[360px] flex items-center justify-center">
