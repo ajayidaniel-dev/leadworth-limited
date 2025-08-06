@@ -30,7 +30,7 @@ export default function Home() {
         <div className="absolute top-10 right-10 w-32 h-32 bg-[#F45625]/20 rounded-full blur-2xl z-0" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-[#FFE5DC]/80 rounded-t-full blur-2xl z-0" />
 
-        <div className="relative max-w-5xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 py-16 md:py-24 gap-8 z-20">
+        <div className="relative w-full max-w-[95%] lg:max-w-7xl xl:max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 py-16 md:py-24 gap-8 z-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -83,9 +83,7 @@ export default function Home() {
             transition={{ duration: 1 }}
             className=" flex justify-center mb-8 md:mb-0 z-10 flex-1 w-full"
           >
-            {/* Fun HR dashboard mockup with avatars and cards */}
             <div className="relative w-full max-w-md h-[320px] md:h-[360px] flex items-center justify-center">
-              {/* Main dashboard card */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-44 bg-white rounded-2xl shadow-xl border-2 border-[#F45625]/30 flex flex-col items-center justify-center p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-3 h-3 rounded-full bg-[#F45625]" />
@@ -115,7 +113,6 @@ export default function Home() {
                   Your HR dashboard is ready
                 </div>
               </div>
-              {/* Floating avatar cards */}
               <div className="absolute -top-8 left-2 w-24 h-24 bg-[#00AEEF]/90 rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-bounce-slow">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <circle cx="20" cy="16" r="12" fill="#fff" />
@@ -130,7 +127,6 @@ export default function Home() {
                 </svg>
                 <div className="text-white font-bold mt-1">Sam</div>
               </div>
-              {/* Floating notification card */}
               <div className="absolute top-8 right-0 w-32 h-16 bg-[#130F45] rounded-xl shadow-lg flex flex-col items-center justify-center border-4 border-white animate-float">
                 <div className="text-white font-bold">+3 New Hires</div>
                 <div className="text-[#FFE5DC] text-xs">This week</div>

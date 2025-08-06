@@ -19,7 +19,7 @@ const team = [
     name: "Mr Wale Arowojobe",
     role: "Founder & CEO",
     img: "/ceo.jpg",
-    linkedin: "https://www.linkedin.com/in/wale-arowojobe/",
+    linkedin: "https://www.linkedin.com/in/wale-arowojobe-fcipm-hrpl-68568b29/",
   },
   // {
   //   name: "Aisha Bello",
