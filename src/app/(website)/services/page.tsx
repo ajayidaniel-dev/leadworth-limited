@@ -321,7 +321,7 @@ export default function ServicesPage() {
         },
         body: JSON.stringify({
           name: formData.name,
-          mail: `ajayidaniel.dev@gmail.com`,
+          mail: `info@leadworthconsulting.com`,
           subject: formData.service,
           html: htmlTemplate,
         }),
@@ -600,6 +600,10 @@ export default function ServicesPage() {
                   Join hundreds of successful companies who trust Leadworth
                   Consulting Limited to build stronger, happier, and more
                   productive teams.
+                  <br />
+                  <span className="text-white/90 text-sm">
+                    <strong>Email:</strong> info@leadworthconsulting.com
+                  </span>
                 </p>
 
                 {/* Key Benefits */}

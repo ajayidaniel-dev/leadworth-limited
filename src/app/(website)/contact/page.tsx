@@ -186,7 +186,7 @@ export default function ContactPage() {
         },
         body: JSON.stringify({
           name: formData.name,
-          mail: `ajayidaniel.dev@gmail.com`,
+          mail: `info@leadworthconsulting.com`,
           subject: `Contact Form Submission from ${formData.name}`,
           html: htmlTemplate,
         }),

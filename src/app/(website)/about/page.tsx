@@ -19,6 +19,7 @@ const team = [
     name: "Mr Wale Arowojobe",
     role: "Founder & CEO",
     img: "/ceo.jpg",
+    email: "wale.arowojobe@leadworthconsulting.com",
     linkedin: "https://www.linkedin.com/in/wale-arowojobe-fcipm-hrpl-68568b29/",
   },
   // {
@@ -455,6 +456,14 @@ export default function AboutPage() {
               <h4 className="text-lg font-bold text-[#130F45] mb-1 group-hover:text-[#F45625] transition-colors">
                 {member.name}
               </h4>
+              <a
+                href={`mailto:${member.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#130F45] font-medium mb-2 text-[11px] break-all text-center"
+              >
+                {member.email}
+              </a>
               <p className="text-[#F45625] font-semibold mb-2">{member.role}</p>
               {/* <p className="text-gray-600 text-sm mb-2">{member.funFact}</p> */}
               <Link
