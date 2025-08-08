@@ -432,21 +432,13 @@ export default function CareersPage() {
           className="bg-gradient-to-br from-[#130F45] to-[#F45625] rounded-3xl p-8 md:p-12 text-center text-white"
         >
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
-            Don&apos;t See Your Perfect Role?
+            About Our Hiring Process
           </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            We&apos;re always looking for talented individuals to join our team.
-            Send us your CV and we&apos;ll keep you in mind for future
-            opportunities.
+            We maintain an active talent pipeline and regularly review
+            applications for future opportunities. Our team grows based on
+            project needs and strategic initiatives throughout the year.
           </p>
-          <motion.a
-            href="mailto:careers@leadworthconsulting.com"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-4 bg-white text-[#F45625] rounded-xl font-semibold shadow-lg hover:bg-[#FFE5DC] transition-all duration-300"
-          >
-            Send Your CV
-          </motion.a>
         </motion.div>
       </section>
     </main>

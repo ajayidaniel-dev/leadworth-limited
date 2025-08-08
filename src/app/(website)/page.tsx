@@ -30,12 +30,12 @@ export default function Home() {
         <div className="absolute top-10 right-10 w-32 h-32 bg-[#F45625]/20 rounded-full blur-2xl z-0" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-[#FFE5DC]/80 rounded-t-full blur-2xl z-0" />
 
-        <div className="relative w-full max-w-[95%] lg:max-w-7xl xl:max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 py-16 md:py-24 gap-8 z-20">
+        <div className="relative w-full max-w-[95%] lg:max-w-7xl xl:max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center px-4 md:px-8 py-16 md:py-24 gap-8 z-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className=" text-center md:text-left  flex-1"
+            className=" text-center  flex-1"
           >
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -51,13 +51,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-xl mx-auto md:mx-0"
+              className="text-lg md:text-xl text-white/90 mb-8 max-w-xl mx-auto "
             >
               Discover a new era of recruitment, training, and HR consulting. We
               help you build, grow, and empower your workforce with creativity
               and care.
             </motion.p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -77,7 +77,7 @@ export default function Home() {
             </div>
           </motion.div>
           {/* Mockup Illustration */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
@@ -132,7 +132,7 @@ export default function Home() {
                 <div className="text-[#FFE5DC] text-xs">This week</div>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 

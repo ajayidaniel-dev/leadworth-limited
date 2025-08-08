@@ -86,7 +86,7 @@ export default function AboutSection() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="flex flex-col items-center"
             >
-              <span className="text-3xl font-bold text-[#F45625]">10+</span>
+              <span className="text-3xl font-bold text-[#F45625]">30+</span>
               <span className="text-[#130F45]">Years Experience</span>
             </motion.div>
             <motion.div
