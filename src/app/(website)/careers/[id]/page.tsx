@@ -85,7 +85,7 @@ const jobs = [
   {
     id: 1,
     title: "Team Lead - Operations",
-    company: "Ardrend Limited",
+    company: "",
     location: "Nigeria",
     type: "Full-time",
     salary: "Competitive (based on experience)",
@@ -93,8 +93,8 @@ const jobs = [
     department: "Operations",
     postedDate: "2025-08-20",
     description:
-      "The Team Lead - Operations is responsible for planning, leading, and executing Ardrend’s operations across multiple client sites, ensuring projects are delivered on time, within budget, and to the highest safety and quality standards.",
-    fullDescription: `As the Team Lead - Operations at Ardrend Limited, you will be responsible for coordinating and executing operational projects across multiple client sites. You will ensure that projects are delivered on time, within scope, and to the highest safety and quality standards while complying with HSSE regulations.
+      "We are seeking an experienced Operations Team Lead for our client, one of the major players in the Oil and Gas industry based in Port Harcourt. The right candidate must have at least ten years of experience in Automated and Robotic Tank Cleaning with proven experience in managing degassing, dislodging tanks. The candidate must have background in project management and work well in a team.",
+    fullDescription: `As the Team Lead - Operations, you will be responsible for coordinating and executing operational projects across multiple client sites. You will ensure that projects are delivered on time, within scope, and to the highest safety and quality standards while complying with HSSE regulations.
 
 Key Responsibilities:
 • Project Planning and Budgeting: Review scopes, develop detailed project plans, allocate resources, and manage budgets effectively.
