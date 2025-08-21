@@ -84,268 +84,68 @@ const Toast = ({
 const jobs = [
   {
     id: 1,
-    title: "Senior HR Consultant",
-    company: "Leadworth Consulting Limited",
-    location: "Ibadan, Nigeria",
+    title: "Team Lead - Operations",
+    company: "Ardrend Limited",
+    location: "Nigeria",
     type: "Full-time",
-    salary: "₦500,000 - ₦800,000",
-    experience: "5+ years",
-    department: "HR Consulting",
-    postedDate: "2024-01-15",
+    salary: "Competitive (based on experience)",
+    experience: "10+ years",
+    department: "Operations",
+    postedDate: "2025-08-20",
     description:
-      "We are seeking an experienced HR Consultant to join our dynamic team. You will be responsible for providing strategic HR consulting services to our diverse client base, helping organizations optimize their human capital and achieve their business objectives.",
-    fullDescription: `As a Senior HR Consultant at Leadworth Consulting Limited, you will play a pivotal role in delivering high-impact HR solutions to our clients. You will work closely with organizations across various industries to develop and implement comprehensive HR strategies that drive business success.
+      "The Team Lead - Operations is responsible for planning, leading, and executing Ardrend’s operations across multiple client sites, ensuring projects are delivered on time, within budget, and to the highest safety and quality standards.",
+    fullDescription: `As the Team Lead - Operations at Ardrend Limited, you will be responsible for coordinating and executing operational projects across multiple client sites. You will ensure that projects are delivered on time, within scope, and to the highest safety and quality standards while complying with HSSE regulations.
 
 Key Responsibilities:
-• Provide strategic HR consulting services to clients across different sectors
-• Conduct comprehensive organizational assessments and HR audits
-• Develop and implement HR policies, procedures, and best practices
-• Lead training and development programs for client organizations
-• Manage employee relations and performance management systems
-• Provide guidance on compliance with Nigerian labor laws and regulations
-• Collaborate with clients to develop recruitment and retention strategies
-• Prepare detailed reports and recommendations for client presentations
+• Project Planning and Budgeting: Review scopes, develop detailed project plans, allocate resources, and manage budgets effectively.
+• Project Execution: Lead project execution on-site, coordinate teams, monitor performance, resolve technical challenges, and ensure timely delivery.
+• HSSE Compliance: Enforce strict adherence to HSSE policies, conduct safety briefings, and promote a safety-first culture.
+• Reporting & Documentation: Maintain accurate project records, prepare progress reports, and provide timely updates to management and clients.
 
 What We're Looking For:
-• Bachelor's degree in Human Resources, Business Administration, or related field
-• 5+ years of HR consulting experience in a professional services environment
-• Strong knowledge of Nigerian labor laws and HR best practices
-• Excellent communication, presentation, and interpersonal skills
-• Proven track record of managing multiple client relationships
-• Experience with HRIS systems and HR analytics
-• Professional HR certification (CIPM, SHRM, or equivalent) preferred
-• Strong analytical and problem-solving abilities
+• Degree in Mechanical or Petro-chemical Engineering
+• COREN certification required
+• 10+ years of experience in tank cleaning operations, NDT inspection, or related field
+• Strong technical knowledge of HAZOP, HAZID, and JHA
+• NEBOSH or equivalent safety certification
+• Strong leadership, communication, and problem-solving skills
+• Proven ability to manage operations across multiple projects
 
 What We Offer:
-• Competitive salary and benefits package
-• Professional development and training opportunities
-• Collaborative and supportive work environment
-• Opportunity to work with diverse clients across industries
-• Career growth and advancement potential
-• Flexible work arrangements`,
+• Competitive compensation package
+• Opportunity to work on high-impact operational projects
+• Professional growth and development
+• Collaborative and safety-focused work environment
+• Exposure to diverse client sites and operations`,
     requirements: [
-      "Bachelor's degree in Human Resources or related field",
-      "5+ years of HR consulting experience",
-      "Strong knowledge of Nigerian labor laws",
-      "Excellent communication and interpersonal skills",
-      "Professional HR certification preferred",
-      "Experience with HRIS systems",
-      "Strong analytical and problem-solving abilities",
+      "Degree in Mechanical or Petro-chemical Engineering",
+      "COREN certification",
+      "10+ years of experience in tank cleaning operations, NDT inspection, or related field",
+      "Strong knowledge of engineering principles, HAZOP, HAZID, JHA",
+      "NEBOSH or equivalent safety certification",
+      "Strong technical documentation skills",
+      "Excellent leadership and team management abilities",
+      "Strong problem-solving and communication skills",
     ],
     responsibilities: [
-      "Provide strategic HR consulting services to clients",
-      "Develop and implement HR policies and procedures",
-      "Conduct organizational assessments and audits",
-      "Lead training and development programs",
-      "Manage employee relations and performance systems",
-      "Ensure compliance with labor laws and regulations",
-      "Prepare detailed reports and recommendations",
+      "Plan, lead, and execute operational projects across multiple client sites",
+      "Develop project plans, budgets, and timelines",
+      "Coordinate project teams and allocate resources effectively",
+      "Monitor project performance, productivity, and quality standards",
+      "Ensure projects are delivered on time, within scope and budget",
+      "Enforce HSSE policies and conduct safety briefings",
+      "Maintain accurate project documentation and progress reports",
+      "Collaborate with clients and stakeholders to ensure smooth operations",
+      "Oversee equipment mobilization, usage, and demobilization",
+      "Provide weekly and monthly quality and milestone reports",
     ],
     benefits: [
-      "Competitive salary and benefits package",
+      "Competitive compensation package",
       "Professional development opportunities",
-      "Collaborative work environment",
-      "Flexible work arrangements",
-      "Health insurance coverage",
-      "Performance-based bonuses",
-    ],
-  },
-  {
-    id: 2,
-    title: "Recruitment Specialist",
-    company: "Leadworth Consulting Limited",
-    location: "Lagos, Nigeria",
-    type: "Full-time",
-    salary: "₦300,000 - ₦500,000",
-    experience: "3+ years",
-    department: "Recruitment",
-    postedDate: "2024-01-10",
-    description:
-      "Join our recruitment team to help organizations find the best talent. You will be responsible for sourcing, screening, and placing qualified candidates across various industries.",
-    fullDescription: `As a Recruitment Specialist, you will be at the forefront of our talent acquisition services, helping organizations build their teams with the right people. You will work with clients across various industries to understand their hiring needs and deliver exceptional recruitment solutions.
-
-Key Responsibilities:
-• Source and screen candidates for various positions across industries
-• Conduct comprehensive interviews and assessments
-• Build and maintain relationships with clients and candidates
-• Manage recruitment campaigns and job postings
-• Coordinate interview processes and candidate communications
-• Conduct reference checks and background verifications
-• Provide market insights and salary benchmarking
-• Track recruitment metrics and performance indicators
-
-What We're Looking For:
-• Bachelor's degree in any field (HR, Business, or Psychology preferred)
-• 3+ years of recruitment experience in a professional environment
-• Strong sourcing and screening skills using various channels
-• Experience with ATS and recruitment tools
-• Excellent communication and relationship-building skills
-• Knowledge of Nigerian job market and industry trends
-• Strong organizational and time management abilities
-• Results-oriented with a track record of meeting targets
-
-What We Offer:
-• Competitive salary with performance incentives
-• Comprehensive training and development programs
-• Modern recruitment tools and technology
-• Collaborative team environment
-• Career growth opportunities
-• Health and wellness benefits`,
-    requirements: [
-      "Bachelor's degree in any field",
-      "3+ years of recruitment experience",
-      "Strong sourcing and screening skills",
-      "Experience with ATS and recruitment tools",
-      "Excellent communication skills",
-      "Knowledge of Nigerian job market",
-    ],
-    responsibilities: [
-      "Source and screen candidates for various positions",
-      "Conduct interviews and assessments",
-      "Build relationships with clients and candidates",
-      "Manage recruitment campaigns and job postings",
-      "Coordinate interview processes",
-      "Conduct reference checks",
-    ],
-    benefits: [
-      "Competitive salary with incentives",
-      "Training and development programs",
-      "Modern recruitment tools",
-      "Collaborative environment",
-      "Career growth opportunities",
-      "Health benefits",
-    ],
-  },
-  {
-    id: 3,
-    title: "Training Coordinator",
-    company: "Leadworth Consulting Limited",
-    location: "Ibadan, Nigeria",
-    type: "Full-time",
-    salary: "₦250,000 - ₦400,000",
-    experience: "2+ years",
-    department: "Training & Development",
-    postedDate: "2024-01-08",
-    description:
-      "Help organizations develop their workforce through effective training programs. You will coordinate training initiatives and ensure successful learning outcomes.",
-    fullDescription: `As a Training Coordinator, you will be instrumental in helping organizations develop their workforce through effective training and development programs. You will work closely with clients to design, coordinate, and deliver impactful learning experiences.
-
-Key Responsibilities:
-• Coordinate training programs and workshops for client organizations
-• Develop and customize training materials and content
-• Track training effectiveness and return on investment
-• Manage training schedules, logistics, and participant communications
-• Conduct training needs assessments and gap analyses
-• Evaluate training outcomes and provide recommendations
-• Maintain training records and documentation
-• Support the development of learning and development strategies
-
-What We're Looking For:
-• Bachelor's degree in Education, Human Resources, or related field
-• 2+ years of training coordination experience
-• Strong organizational and communication skills
-• Experience with learning management systems
-• Knowledge of adult learning principles and methodologies
-• Excellent presentation and facilitation skills
-• Ability to work with diverse groups and learning styles
-• Strong attention to detail and project management abilities
-
-What We Offer:
-• Competitive salary and benefits
-• Professional development opportunities
-• Modern training facilities and tools
-• Collaborative learning environment
-• Career advancement potential
-• Health and wellness benefits`,
-    requirements: [
-      "Bachelor's degree in Education or related field",
-      "2+ years of training coordination experience",
-      "Strong organizational and communication skills",
-      "Experience with learning management systems",
-      "Knowledge of adult learning principles",
-      "Excellent presentation skills",
-    ],
-    responsibilities: [
-      "Coordinate training programs and workshops",
-      "Develop training materials and content",
-      "Track training effectiveness and ROI",
-      "Manage training schedules and logistics",
-      "Conduct training needs assessments",
-      "Evaluate training outcomes",
-    ],
-    benefits: [
-      "Competitive salary and benefits",
-      "Professional development opportunities",
-      "Modern training facilities",
-      "Collaborative environment",
-      "Career advancement potential",
-      "Health benefits",
-    ],
-  },
-  {
-    id: 4,
-    title: "Business Development Manager",
-    company: "Leadworth Consulting Limited",
-    location: "Remote / Nigeria",
-    type: "Full-time",
-    salary: "₦600,000 - ₦900,000",
-    experience: "4+ years",
-    department: "Business Development",
-    postedDate: "2024-01-05",
-    description:
-      "Drive business growth and expand our client base across Nigeria. You will be responsible for developing new business opportunities and maintaining client relationships.",
-    fullDescription: `As a Business Development Manager, you will be a key driver of our company's growth, responsible for expanding our client base and developing new business opportunities across Nigeria. You will work closely with potential clients to understand their needs and position our services effectively.
-
-Key Responsibilities:
-• Develop and execute business development strategies
-• Build and maintain relationships with potential and existing clients
-• Generate new business opportunities through networking and prospecting
-• Conduct client presentations and proposals
-• Represent the company at industry events and conferences
-• Collaborate with internal teams to develop customized solutions
-• Track and report on business development activities and outcomes
-• Stay informed about industry trends and competitive landscape
-
-What We're Looking For:
-• Bachelor's degree in Business, Marketing, or related field
-• 4+ years of B2B sales or business development experience
-• Strong networking and relationship-building skills
-• Experience in HR or consulting industry preferred
-• Excellent communication and presentation skills
-• Proven track record of meeting sales targets
-• Self-motivated and results-oriented
-• Knowledge of Nigerian business landscape
-
-What We Offer:
-• Competitive salary with commission structure
-• Comprehensive benefits package
-• Professional development and training
-• Flexible work arrangements
-• Performance-based incentives
-• Health and wellness benefits`,
-    requirements: [
-      "Bachelor's degree in Business or related field",
-      "4+ years of B2B sales experience",
-      "Strong networking and relationship-building skills",
-      "Experience in HR or consulting industry preferred",
-      "Excellent communication skills",
-      "Proven track record of meeting targets",
-    ],
-    responsibilities: [
-      "Develop and execute business development strategies",
-      "Build and maintain client relationships",
-      "Generate new business opportunities",
-      "Represent company at industry events",
-      "Conduct client presentations",
-      "Track business development activities",
-    ],
-    benefits: [
-      "Competitive salary with commission",
-      "Comprehensive benefits package",
-      "Professional development",
-      "Flexible work arrangements",
-      "Performance incentives",
-      "Health benefits",
+      "Collaborative and supportive work environment",
+      "Exposure to diverse operational projects and client sites",
+      "Health and safety-focused culture",
+      "Career growth and advancement potential",
     ],
   },
 ];
