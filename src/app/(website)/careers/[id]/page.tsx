@@ -157,6 +157,7 @@ export default function JobDetailPage() {
     message: string;
     type: "error" | "success";
   } | null>(null);
+  const [cvFile, setCvFile] = useState<File | null>(null);
 
   const job = jobs.find((j) => j.id === jobId);
 
@@ -192,19 +193,14 @@ export default function JobDetailPage() {
   }
 
   const handleApply = () => {
-    const subject = `Application for ${job.title} - ${job.company}`;
-    const body = `Dear Hiring Manager,
-
-I am writing to express my interest in the ${job.title} position at ${job.company}.
-
-Please find my CV attached to this email.
-
-I look forward to discussing how my skills and experience align with your requirements.
-
-Best regards,
-[Your Name]`;
-
-    window.location.href = `mailto:careers@leadworthconsulting.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Scroll to the application form
+    const formElement = document.getElementById("application-form");
+    if (formElement) {
+      formElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
@@ -398,6 +394,7 @@ Best regards,
 
         {/* Employment Application Form */}
         <motion.div
+          id="application-form"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
@@ -1341,6 +1338,102 @@ Best regards,
               </div>
             </div>
 
+            {/* CV Upload */}
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
+                <svg
+                  className="w-6 h-6 text-[#F45625]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+                CV/RESUME UPLOAD
+              </h3>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Upload CV/Resume (PDF, DOC, DOCX) *
+                  </label>
+                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-[#F45625] transition-colors">
+                    <div className="space-y-1 text-center">
+                      <svg
+                        className="mx-auto h-12 w-12 text-gray-400"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 48 48"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <div className="flex text-sm text-gray-600">
+                        <label
+                          htmlFor="cv-upload"
+                          className="relative cursor-pointer bg-white rounded-md font-medium text-[#F45625] hover:text-[#e04a1f] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#F45625]"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="cv-upload"
+                            name="cv-upload"
+                            type="file"
+                            accept=".pdf,.doc,.docx"
+                            className="sr-only"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                // Update the display
+                                const fileName =
+                                  document.getElementById("cv-file-name");
+                                if (fileName) {
+                                  fileName.textContent = file.name;
+                                  fileName.className =
+                                    "text-sm text-gray-900 font-medium";
+                                }
+
+                                // Store file in state
+                                setCvFile(file);
+                              }
+                            }}
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        PDF, DOC, DOCX up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                  <div id="cv-file-name" className="mt-2 text-sm text-gray-500">
+                    No file selected
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Cover Letter (Optional)
+                  </label>
+                  <textarea
+                    name="coverLetter"
+                    rows={4}
+                    placeholder="Please provide a brief cover letter explaining why you are interested in this position and how your skills and experience make you a good fit..."
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2  focus:ring-[#F45625] focus:border-transparent"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
             {/* Submit Button */}
             <div className="text-center pt-6">
               <motion.button
@@ -1396,6 +1489,18 @@ Best regards,
                     }
                   });
 
+                  // Check if CV is uploaded
+                  if (!cvFile) {
+                    missingFields.push("CV/Resume");
+                    // Add visual error indication to upload area
+                    const uploadArea = document.querySelector(".border-dashed");
+                    uploadArea?.classList.add("border-red-500");
+                  } else {
+                    // Remove error indication if CV is uploaded
+                    const uploadArea = document.querySelector(".border-dashed");
+                    uploadArea?.classList.remove("border-red-500");
+                  }
+
                   // Check if at least one language is selected
                   const languageSelected =
                     document.querySelector('input[name="english"]:checked') ||
@@ -1424,22 +1529,13 @@ Best regards,
                     return;
                   }
 
-                  // Collect form data
-                  const formData = new FormData();
-
-                  // Get all form inputs
-                  const inputs = document.querySelectorAll(
-                    "input, textarea, select"
-                  );
-                  inputs.forEach((input) => {
-                    const element = input as
-                      | HTMLInputElement
-                      | HTMLTextAreaElement
-                      | HTMLSelectElement;
-                    if (element.name && element.value) {
-                      formData.append(element.name, element.value);
-                    }
-                  });
+                  // Get cover letter
+                  const coverLetter =
+                    (
+                      document.querySelector(
+                        'textarea[name="coverLetter"]'
+                      ) as HTMLTextAreaElement
+                    )?.value || "";
 
                   // Create email body with form data
                   const emailBody = `
@@ -1473,15 +1569,29 @@ Hausa: ${(document.querySelector('input[name="hausa"]:checked') as HTMLInputElem
 Yoruba: ${(document.querySelector('input[name="yoruba"]:checked') as HTMLInputElement)?.value || "Not specified"}
 Igbo: ${(document.querySelector('input[name="igbo"]:checked') as HTMLInputElement)?.value || "Not specified"}
 
+CV/RESUME:
+File Name: ${cvFile?.name || "Not provided"}
+File Size: ${cvFile ? `${(cvFile.size / 1024 / 1024).toFixed(2)} MB` : "Not provided"}
+
+COVER LETTER:
+${coverLetter || "No cover letter provided"}
+
 ---
 This application was submitted through the Leadworth Consulting website.
-Please review the complete application form attached.
+Please review the complete application form and attached CV/Resume.
                   `.trim();
 
                   // Send email
                   const subject = `Employment Application - ${job.title} - ${job.company}`;
                   const mailtoLink = `mailto:careers@leadworthconsulting.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
+                  // Show success message
+                  setToast({
+                    message: `Application submitted successfully! Your CV (${cvFile?.name || "Not provided"}) and application details have been sent to careers@leadworthconsulting.com. Please check your email client to complete the submission.`,
+                    type: "success",
+                  });
+
+                  // Open email client
                   window.location.href = mailtoLink;
                 }}
                 whileHover={{ scale: 1.02 }}
