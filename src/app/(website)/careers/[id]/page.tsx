@@ -247,15 +247,15 @@ export default function JobDetailPage() {
           {/* Job Header */}
           <div className="mb-8">
             <div className="flex items-start justify-between mb-4">
-              <div>
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-[#130F45] mb-2">
+              <div className="">
+                <h1 className=" text-[18px] md:text-3xl  font-extrabold text-[#130F45] mb-2">
                   {job.title}
                 </h1>
                 <p className="text-xl text-[#F45625] font-semibold mb-4">
                   {job.company}
                 </p>
               </div>
-              <span className="px-4 py-2 bg-[#F45625]/10 text-[#F45625] rounded-full text-sm font-semibold">
+              <span className="px-2 py-1 md:px-4 md:py-2 bg-[#F45625]/10 text-[#F45625] rounded-full md:text-sm text-xs font-semibold">
                 {job.type}
               </span>
             </div>
@@ -398,7 +398,7 @@ export default function JobDetailPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 p-8 mt-8"
+          className="bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 md:p-8 p-3 mt-8"
         >
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-[#130F45] mb-2">
