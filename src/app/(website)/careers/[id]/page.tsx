@@ -157,7 +157,7 @@ export default function JobDetailPage() {
     message: string;
     type: "error" | "success";
   } | null>(null);
-  const [cvFile, setCvFile] = useState<File | null>(null);
+  // const [cvFile, setCvFile] = useState<File | null>(null);
 
   const job = jobs.find((j) => j.id === jobId);
 
@@ -1366,7 +1366,7 @@ export default function JobDetailPage() {
                 CV/RESUME UPLOAD
               </h3>
 
-              <div className="space-y-4">
+              {/* <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload CV/Resume (PDF, DOC, DOCX) *
@@ -1440,7 +1440,7 @@ export default function JobDetailPage() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2  focus:ring-[#F45625] focus:border-transparent"
                   ></textarea>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Submit Button */}
@@ -1487,11 +1487,11 @@ export default function JobDetailPage() {
                     }
                   });
 
-                  if (!cvFile) {
-                    missingFields.push("CV/Resume");
-                    const uploadArea = document.querySelector(".border-dashed");
-                    uploadArea?.classList.add("border-red-500");
-                  }
+                  // if (!cvFile) {
+                  //   missingFields.push("CV/Resume");
+                  //   const uploadArea = document.querySelector(".border-dashed");
+                  //   uploadArea?.classList.add("border-red-500");
+                  // }
 
                   const languageSelected =
                     document.querySelector('input[name="english"]:checked') ||
@@ -1517,12 +1517,12 @@ export default function JobDetailPage() {
                   }
 
                   // 2. Collect form values
-                  const coverLetter =
-                    (
-                      document.querySelector(
-                        'textarea[name="coverLetter"]'
-                      ) as HTMLTextAreaElement
-                    )?.value || "";
+                  // const coverLetter =
+                  //   (
+                  //     document.querySelector(
+                  //       'textarea[name="coverLetter"]'
+                  //     ) as HTMLTextAreaElement
+                  //   )?.value || "";
 
                   const emailBody = `
 Employment Application for ${job.title} - ${job.company}
@@ -1555,16 +1555,10 @@ Hausa: ${(document.querySelector('input[name="hausa"]:checked') as HTMLInputElem
 Yoruba: ${(document.querySelector('input[name="yoruba"]:checked') as HTMLInputElement)?.value || "Not specified"}
 Igbo: ${(document.querySelector('input[name="igbo"]:checked') as HTMLInputElement)?.value || "Not specified"}
 
-CV/RESUME:
-File Name: ${cvFile?.name || "Not provided"}
-File Size: ${cvFile ? `${(cvFile.size / 1024 / 1024).toFixed(2)} MB` : "Not provided"}
-
-COVER LETTER:
-${coverLetter || "No cover letter provided"}
 
 ---
 This application was submitted through the Leadworth Consulting website.
-Please review the complete application form and attached CV/Resume.
+Please review the complete application form.
       `.trim();
 
                   // 3. Send to your backend mailer
@@ -1588,7 +1582,7 @@ Please review the complete application form and attached CV/Resume.
                       throw new Error("Failed to send application");
 
                     setToast({
-                      message: `✅ Application submitted successfully! Your CV (${cvFile?.name || "Not provided"}) and details have been sent.`,
+                      message: `✅ Application submitted successfully! and details have been sent.`,
                       type: "success",
                     });
 
