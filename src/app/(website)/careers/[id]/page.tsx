@@ -1583,7 +1583,7 @@ Please review the complete application form and attached CV/Resume.
 
                   // Send email
                   const subject = `Employment Application - ${job.title} - ${job.company}`;
-                  const mailtoLink = `mailto:careers@leadworthconsulting.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                  const mailtoLink = `mailto:leadworthconsultinglimited@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
                   // Show success message
                   setToast({
