@@ -436,6 +436,7 @@ export default function JobDetailPage() {
                     Name (Last, First, MI)
                   </label>
                   <input
+                    name="name"
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -445,6 +446,7 @@ export default function JobDetailPage() {
                     Street Address
                   </label>
                   <input
+                    name="streetAddress"
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -454,6 +456,7 @@ export default function JobDetailPage() {
                     City
                   </label>
                   <input
+                    name="city"
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -463,6 +466,7 @@ export default function JobDetailPage() {
                     State
                   </label>
                   <input
+                    name="state"
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -472,6 +476,7 @@ export default function JobDetailPage() {
                     Home Phone Number
                   </label>
                   <input
+                    name="homePhone"
                     type="tel"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -481,6 +486,7 @@ export default function JobDetailPage() {
                     Mobile Phone Number
                   </label>
                   <input
+                    name="mobilePhone"
                     type="tel"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -490,6 +496,7 @@ export default function JobDetailPage() {
                     E-Mail Address
                   </label>
                   <input
+                    name="email"
                     type="email"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -499,6 +506,7 @@ export default function JobDetailPage() {
                     NIN (National Identification Number)
                   </label>
                   <input
+                    name="nin"
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -542,6 +550,7 @@ export default function JobDetailPage() {
                     Date Available For Work
                   </label>
                   <input
+                    name="dateAvailable"
                     type="date"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
                   />
@@ -1438,37 +1447,28 @@ export default function JobDetailPage() {
             <div className="text-center pt-6">
               <motion.button
                 type="button"
-                onClick={() => {
-                  // Validate required fields
+                onClick={async () => {
+                  // 1. Validate required fields (your existing validation logic)
                   const requiredFields = [
-                    { selector: 'input[type="text"]', label: "Name" },
+                    { selector: 'input[name="name"]', label: "Name" },
                     {
-                      selector: 'input[type="text"]:nth-of-type(2)',
+                      selector: 'input[name="streetAddress"]',
                       label: "Street Address",
                     },
+                    { selector: 'input[name="city"]', label: "City" },
+                    { selector: 'input[name="state"]', label: "State" },
                     {
-                      selector: 'input[type="text"]:nth-of-type(3)',
-                      label: "City",
-                    },
-                    {
-                      selector: 'input[type="text"]:nth-of-type(4)',
-                      label: "State",
-                    },
-                    {
-                      selector: 'input[type="tel"]',
+                      selector: 'input[name="homePhone"]',
                       label: "Home Phone Number",
                     },
                     {
-                      selector: 'input[type="tel"]:nth-of-type(2)',
+                      selector: 'input[name="mobilePhone"]',
                       label: "Mobile Phone Number",
                     },
-                    { selector: 'input[type="email"]', label: "Email Address" },
+                    { selector: 'input[name="email"]', label: "Email Address" },
+                    { selector: 'input[name="nin"]', label: "NIN" },
                     {
-                      selector: 'input[type="text"]:nth-of-type(7)',
-                      label: "NIN",
-                    },
-                    {
-                      selector: 'input[type="date"]',
+                      selector: 'input[name="dateAvailable"]',
                       label: "Date Available for Work",
                     },
                   ];
@@ -1481,55 +1481,42 @@ export default function JobDetailPage() {
                     ) as HTMLInputElement;
                     if (!field || !field.value.trim()) {
                       missingFields.push(label);
-                      // Add visual error indication
                       field?.classList.add("border-red-500", "ring-red-500");
                     } else {
-                      // Remove error indication if field is filled
                       field?.classList.remove("border-red-500", "ring-red-500");
                     }
                   });
 
-                  // Check if CV is uploaded
                   if (!cvFile) {
                     missingFields.push("CV/Resume");
-                    // Add visual error indication to upload area
                     const uploadArea = document.querySelector(".border-dashed");
                     uploadArea?.classList.add("border-red-500");
-                  } else {
-                    // Remove error indication if CV is uploaded
-                    const uploadArea = document.querySelector(".border-dashed");
-                    uploadArea?.classList.remove("border-red-500");
                   }
 
-                  // Check if at least one language is selected
                   const languageSelected =
                     document.querySelector('input[name="english"]:checked') ||
                     document.querySelector('input[name="hausa"]:checked') ||
                     document.querySelector('input[name="yoruba"]:checked') ||
                     document.querySelector('input[name="igbo"]:checked');
 
-                  if (!languageSelected) {
+                  if (!languageSelected)
                     missingFields.push("Language Proficiency");
-                  }
 
-                  // Check if contact current employer is selected
                   const contactSelected = document.querySelector(
                     'input[name="contactCurrent"]:checked'
                   );
-                  if (!contactSelected) {
+                  if (!contactSelected)
                     missingFields.push("Contact Current Employer");
-                  }
 
                   if (missingFields.length > 0) {
-                    // Show error message
                     setToast({
-                      message: `Please fill in the following required fields:\n\n${missingFields.join("\n")}\n\nPlease complete all required fields before submitting.`,
+                      message: `Please fill in the following required fields:\n\n${missingFields.join("\n")}`,
                       type: "error",
                     });
                     return;
                   }
 
-                  // Get cover letter
+                  // 2. Collect form values
                   const coverLetter =
                     (
                       document.querySelector(
@@ -1537,31 +1524,30 @@ export default function JobDetailPage() {
                       ) as HTMLTextAreaElement
                     )?.value || "";
 
-                  // Create email body with form data
                   const emailBody = `
 Employment Application for ${job.title} - ${job.company}
 
 PERSONAL INFORMATION:
-Name: ${(document.querySelector('input[type="text"]') as HTMLInputElement)?.value || "Not provided"}
-Street Address: ${(document.querySelectorAll('input[type="text"]')[1] as HTMLInputElement)?.value || "Not provided"}
-City: ${(document.querySelectorAll('input[type="text"]')[2] as HTMLInputElement)?.value || "Not provided"}
-State: ${(document.querySelectorAll('input[type="text"]')[3] as HTMLInputElement)?.value || "Not provided"}
-Home Phone: ${(document.querySelector('input[type="tel"]') as HTMLInputElement)?.value || "Not provided"}
-Mobile Phone: ${(document.querySelectorAll('input[type="tel"]')[1] as HTMLInputElement)?.value || "Not provided"}
-Email: ${(document.querySelector('input[type="email"]') as HTMLInputElement)?.value || "Not provided"}
-NIN: ${(document.querySelectorAll('input[type="text"]')[6] as HTMLInputElement)?.value || "Not provided"}
+Name: ${(document.querySelector('input[name="name"]') as HTMLInputElement)?.value}
+Street Address: ${(document.querySelector('input[name="streetAddress"]') as HTMLInputElement)?.value}
+City: ${(document.querySelector('input[name="city"]') as HTMLInputElement)?.value}
+State: ${(document.querySelector('input[name="state"]') as HTMLInputElement)?.value}
+Home Phone: ${(document.querySelector('input[name="homePhone"]') as HTMLInputElement)?.value}
+Mobile Phone: ${(document.querySelector('input[name="mobilePhone"]') as HTMLInputElement)?.value}
+Email: ${(document.querySelector('input[name="email"]') as HTMLInputElement)?.value}
+NIN: ${(document.querySelector('input[name="nin"]') as HTMLInputElement)?.value}
 
 EMPLOYMENT DESIRED:
 Position: ${job.title}
-Date Available: ${(document.querySelector('input[type="date"]') as HTMLInputElement)?.value || "Not provided"}
+Date Available: ${(document.querySelector('input[name="dateAvailable"]') as HTMLInputElement)?.value}
 
 EDUCATION:
-High School: ${(document.querySelectorAll('input[type="text"]')[7] as HTMLInputElement)?.value || "Not provided"}
-University: ${(document.querySelectorAll('input[type="text"]')[11] as HTMLInputElement)?.value || "Not provided"}
-Additional Education: ${(document.querySelector("textarea") as HTMLTextAreaElement)?.value || "Not provided"}
+High School: ${(document.querySelectorAll('input[type="text"]')[7] as HTMLInputElement)?.value}
+University: ${(document.querySelectorAll('input[type="text"]')[11] as HTMLInputElement)?.value}
+Additional Education: ${(document.querySelector("textarea") as HTMLTextAreaElement)?.value}
 
 EMPLOYMENT HISTORY:
-May contact current employer: ${(document.querySelector('input[name="contactCurrent"]:checked') as HTMLInputElement)?.value || "Not specified"}
+May contact current employer: ${(document.querySelector('input[name="contactCurrent"]:checked') as HTMLInputElement)?.value}
 
 LANGUAGES:
 English: ${(document.querySelector('input[name="english"]:checked') as HTMLInputElement)?.value || "Not specified"}
@@ -1579,20 +1565,41 @@ ${coverLetter || "No cover letter provided"}
 ---
 This application was submitted through the Leadworth Consulting website.
 Please review the complete application form and attached CV/Resume.
-                  `.trim();
+      `.trim();
 
-                  // Send email
-                  const subject = `Employment Application - ${job.title} - ${job.company}`;
-                  const mailtoLink = `mailto:leadworthconsultinglimited@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                  // 3. Send to your backend mailer
+                  try {
+                    const response = await fetch(
+                      "https://techxmail.onrender.com/sendmail",
+                      {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name: "Job Applicant",
+                          mail: "leadworthconsultinglimited@gmail.com", // 👈 replace with your real inbox
+                          subject: `Employment Application - ${job.title} - ${job.company}`,
+                          text: emailBody,
+                          html: `<pre>${emailBody}</pre>`,
+                        }),
+                      }
+                    );
 
-                  // Show success message
-                  setToast({
-                    message: `Application submitted successfully! Your CV (${cvFile?.name || "Not provided"}) and application details have been sent to careers@leadworthconsulting.com. Please check your email client to complete the submission.`,
-                    type: "success",
-                  });
+                    if (!response.ok)
+                      throw new Error("Failed to send application");
 
-                  // Open email client
-                  window.location.href = mailtoLink;
+                    setToast({
+                      message: `✅ Application submitted successfully! Your CV (${cvFile?.name || "Not provided"}) and details have been sent.`,
+                      type: "success",
+                    });
+
+                    setTimeout(() => window.location.reload(), 4000);
+                  } catch (err) {
+                    console.error("Error sending application:", err);
+                    setToast({
+                      message: "❌ Failed to submit application",
+                      type: "error",
+                    });
+                  }
                 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
