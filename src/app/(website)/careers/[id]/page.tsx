@@ -1348,7 +1348,7 @@ export default function JobDetailPage() {
             </div>
 
             {/* CV Upload */}
-            <div className="bg-gray-50 rounded-xl p-6">
+            {/* <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
                 <svg
                   className="w-6 h-6 text-[#F45625]"
@@ -1364,9 +1364,9 @@ export default function JobDetailPage() {
                   />
                 </svg>
                 CV/RESUME UPLOAD
-              </h3>
+              </h3> */}
 
-              {/* <div className="space-y-4">
+            {/* <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload CV/Resume (PDF, DOC, DOCX) *
@@ -1441,7 +1441,7 @@ export default function JobDetailPage() {
                   ></textarea>
                 </div>
               </div> */}
-            </div>
+            {/* </div> */}
 
             {/* Submit Button */}
             <div className="text-center pt-6">
