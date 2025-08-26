@@ -153,13 +153,256 @@ What We Offer:
 export default function JobDetailPage() {
   const params = useParams();
   const jobId = parseInt(params.id as string);
+  const [cvFile, setCvFile] = useState<File | null>(null);
   const [toast, setToast] = useState<{
     message: string;
     type: "error" | "success";
   } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const loader = isSubmitting ? (
+    <svg
+      className="inline mr-2 h-5 w-5 animate-spin text-white align-middle"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      ></path>
+    </svg>
+  ) : null;
   // const [cvFile, setCvFile] = useState<File | null>(null);
 
   const job = jobs.find((j) => j.id === jobId);
+
+  // Helper: get a human-readable label for a field
+  const getFieldLabel = (element: Element): string => {
+    // Associated label via for/id
+    if (element instanceof HTMLElement && element.id) {
+      const associated = document.querySelector(`label[for="${element.id}"]`);
+      if (associated?.textContent) return associated.textContent.trim();
+    }
+    // Nearest label in same container
+    const container = element.closest("div");
+    const inlineLabel = container?.querySelector("label");
+    if (inlineLabel?.textContent) return inlineLabel.textContent.trim();
+    // Table row header (for language rows)
+    const rowCell = element.closest("tr")?.querySelector("td:first-child");
+    if (rowCell?.textContent) return rowCell.textContent.trim();
+    // Section headings (fallback)
+    const sectionHeading = element
+      .closest(".bg-gray-50, .p-6")
+      ?.querySelector("h3, h4");
+    if (sectionHeading?.textContent) return sectionHeading.textContent.trim();
+    // Name or placeholder as last resort
+    if ((element as HTMLInputElement).name)
+      return (element as HTMLInputElement).name;
+    const placeholder = (element as HTMLInputElement | HTMLTextAreaElement)
+      .placeholder;
+    if (placeholder) return placeholder.trim();
+    return "Field";
+  };
+
+  // Helper: get the section title a field belongs to
+  const getFieldSection = (element: Element): string => {
+    const section = element.closest(
+      ".bg-gray-50.p-6, .bg-gray-50.rounded-xl.p-6, .p-6"
+    );
+    const heading = section?.querySelector("h3, h4");
+    const text = heading?.textContent?.trim();
+    return text && text.length > 0 ? text : "General";
+  };
+
+  // // Helper: Build email body by walking all form fields (except CV file)
+  // const buildEmailBody = (): string => {
+  //   const formRoot = document.querySelector(
+  //     "#application-form form"
+  //   ) as HTMLFormElement | null;
+  //   const lines: string[] = [];
+
+  //   lines.push(
+  //     `Employment Application for ${job?.title ?? ""} - ${job?.company ?? ""}`
+  //   );
+  //   lines.push("");
+
+  //   if (!formRoot) return lines.join("\n");
+
+  //   // Track processed radio groups to avoid duplicates
+  //   const processedRadioNames = new Set<string>();
+
+  //   const elements = Array.from(
+  //     formRoot.querySelectorAll("input, textarea, select")
+  //   ) as (HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)[];
+  //   for (const el of elements) {
+  //     if (el instanceof HTMLInputElement && el.type === "file") {
+  //       // Skip CV file
+  //       continue;
+  //     }
+
+  //     if (el instanceof HTMLInputElement && el.type === "radio") {
+  //       if (!el.name || processedRadioNames.has(el.name)) continue;
+  //       processedRadioNames.add(el.name);
+  //       const checked = formRoot.querySelector(
+  //         `input[type="radio"][name="${el.name}"]:checked`
+  //       ) as HTMLInputElement | null;
+  //       const value = checked?.value ?? "Not specified";
+  //       // Try to derive a friendlier label for radio groups
+  //       let label = "";
+  //       // Special-case language rows: label from first column cell
+  //       const rowCell = checked?.closest("tr")?.querySelector("td:first-child");
+  //       if (rowCell?.textContent) {
+  //         label = `${rowCell.textContent.trim()} (Proficiency)`;
+  //       } else {
+  //         // Otherwise, use nearest label or name
+  //         label = getFieldLabel(el);
+  //       }
+  //       lines.push(`${label}: ${value}`);
+  //       continue;
+  //     }
+
+  //     const label = getFieldLabel(el);
+  //     let value = "";
+  //     if (el instanceof HTMLInputElement) {
+  //       value = el.value ?? "";
+  //     } else if (el instanceof HTMLTextAreaElement) {
+  //       value = el.value ?? "";
+  //     } else if (el instanceof HTMLSelectElement) {
+  //       value = el.value ?? "";
+  //     }
+
+  //     // Skip empty values to reduce noise
+  //     if (value && label) {
+  //       lines.push(`${label}: ${value}`);
+  //     }
+  //   }
+
+  //   lines.push("");
+  //   lines.push("---");
+  //   lines.push(
+  //     "This application was submitted through the Leadworth Consulting website."
+  //   );
+  //   lines.push("Please review the complete application form.");
+
+  //   return lines.join("\n");
+  // };
+
+  // Helper: Build a polished HTML email grouped by sections
+  const buildEmailHtml = (): string => {
+    const formRoot = document.querySelector(
+      "#application-form form"
+    ) as HTMLFormElement | null;
+
+    const title =
+      `Employment Application - ${job?.title ?? ""} ${job?.company ? `- ${job?.company}` : ""}`.trim();
+
+    if (!formRoot) {
+      return `<div style=\"font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#130F45;\"><h2>${title}</h2><p>No form data found.</p></div>`;
+    }
+
+    type SectionData = { label: string; value: string }[];
+    const sectionToRows = new Map<string, SectionData>();
+    const processedRadioNames = new Set<string>();
+
+    const addRow = (section: string, label: string, value: string) => {
+      if (!value || !label) return;
+      const rows = sectionToRows.get(section) ?? [];
+      rows.push({ label, value });
+      sectionToRows.set(section, rows);
+    };
+
+    const elements = Array.from(
+      formRoot.querySelectorAll("input, textarea, select")
+    ) as (HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)[];
+
+    for (const el of elements) {
+      if (el instanceof HTMLInputElement && el.type === "file") continue;
+
+      if (el instanceof HTMLInputElement && el.type === "radio") {
+        if (!el.name || processedRadioNames.has(el.name)) continue;
+        processedRadioNames.add(el.name);
+        const checked = formRoot.querySelector(
+          `input[type="radio"][name="${el.name}"]:checked`
+        ) as HTMLInputElement | null;
+        const value = checked?.value ?? "Not specified";
+        let label = "";
+        const rowCell = checked?.closest("tr")?.querySelector("td:first-child");
+        if (rowCell?.textContent) {
+          label = `${rowCell.textContent.trim()} (Proficiency)`;
+        } else {
+          label = getFieldLabel(el);
+        }
+        const section = getFieldSection(el);
+        addRow(section, label, value);
+        continue;
+      }
+
+      const label = getFieldLabel(el);
+      const section = getFieldSection(el);
+      let value = "";
+      if (el instanceof HTMLInputElement) value = el.value ?? "";
+      else if (el instanceof HTMLTextAreaElement) value = el.value ?? "";
+      else if (el instanceof HTMLSelectElement) value = el.value ?? "";
+      addRow(section, label, value);
+    }
+
+    const sectionHtml = Array.from(sectionToRows.entries())
+      .map(([section, rows]) => {
+        const rowsHtml = rows
+          .filter((r) => r.value && r.value.trim().length > 0)
+          .map(
+            ({ label, value }) => `
+              <tr>
+                <td style=\"padding:10px 12px; border-bottom:1px solid #eef2f7; width:45%; color:#130F45; font-weight:600;\">${label}</td>
+                <td style=\"padding:10px 12px; border-bottom:1px solid #eef2f7; color:#334155;\">${value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</td>
+              </tr>`
+          )
+          .join("\n");
+        if (!rowsHtml) return "";
+        return `
+          <h3 style=\"margin:24px 0 8px; color:#130F45; font-size:16px; letter-spacing:.3px;\">${section}</h3>
+          <table role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%; border-collapse:collapse; background:#fff; border:1px solid #eef2f7; border-radius:10px; overflow:hidden;\">
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>`;
+      })
+      .join("\n");
+
+    const header = `
+      <div style=\"background:linear-gradient(135deg, #130F45 0%, #F45625 100%); padding:20px 24px; border-radius:14px; color:#fff;\">
+        <div style=\"font-size:14px; opacity:.9;\">Leadworth Consulting</div>
+        <div style=\"font-size:20px; font-weight:700; margin-top:4px;\">${title}</div>
+        <div style=\"font-size:12px; opacity:.9; margin-top:6px;\">Submitted on ${new Date().toLocaleString()}</div>
+      </div>`;
+
+    const footer = `
+      <div style=\"margin-top:24px; font-size:12px; color:#64748b;\">
+        This application was submitted through the Leadworth Consulting website.
+      </div>`;
+
+    const html = `
+      <div style=\"font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f8f9fb; padding:24px; color:#0f172a;\">
+        <div style=\"max-width:760px; margin:0 auto;\">
+          ${header}
+          <div style=\"margin-top:16px;\">
+            ${sectionHtml}
+          </div>
+          ${footer}
+        </div>
+      </div>`;
+
+    return html;
+  };
 
   useEffect(() => {
     if (toast) {
@@ -202,6 +445,7 @@ export default function JobDetailPage() {
       });
     }
   };
+  // console.log(cvFile);
 
   return (
     <main className="bg-[#F8F9FB] min-h-screen">
@@ -1348,7 +1592,7 @@ export default function JobDetailPage() {
             </div>
 
             {/* CV Upload */}
-            {/* <div className="bg-gray-50 rounded-xl p-6">
+            <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
                 <svg
                   className="w-6 h-6 text-[#F45625]"
@@ -1364,9 +1608,9 @@ export default function JobDetailPage() {
                   />
                 </svg>
                 CV/RESUME UPLOAD
-              </h3> */}
+              </h3>
 
-            {/* <div className="space-y-4">
+              <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload CV/Resume (PDF, DOC, DOCX) *
@@ -1402,6 +1646,16 @@ export default function JobDetailPage() {
                             onChange={(e) => {
                               const file = e.target.files?.[0];
                               if (file) {
+                                // ✅ Check file size (5MB = 5 * 1024 * 1024 bytes)
+                                if (file.size > 5 * 1024 * 1024) {
+                                  setToast({
+                                    message: "File size must be less than 5MB",
+                                    type: "error",
+                                  });
+                                  e.target.value = ""; // clear the input
+                                  return;
+                                }
+
                                 // Update the display
                                 const fileName =
                                   document.getElementById("cv-file-name");
@@ -1420,7 +1674,7 @@ export default function JobDetailPage() {
                         <p className="pl-1">or drag and drop</p>
                       </div>
                       <p className="text-xs text-gray-500">
-                        PDF, DOC, DOCX up to 10MB
+                        PDF, DOC, DOCX up to 5MB
                       </p>
                     </div>
                   </div>
@@ -1440,8 +1694,8 @@ export default function JobDetailPage() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2  focus:ring-[#F45625] focus:border-transparent"
                   ></textarea>
                 </div>
-              </div> */}
-            {/* </div> */}
+              </div>
+            </div>
 
             {/* Submit Button */}
             <div className="text-center pt-6">
@@ -1487,11 +1741,11 @@ export default function JobDetailPage() {
                     }
                   });
 
-                  // if (!cvFile) {
-                  //   missingFields.push("CV/Resume");
-                  //   const uploadArea = document.querySelector(".border-dashed");
-                  //   uploadArea?.classList.add("border-red-500");
-                  // }
+                  if (!cvFile) {
+                    missingFields.push("CV/Resume");
+                    const uploadArea = document.querySelector(".border-dashed");
+                    uploadArea?.classList.add("border-red-500");
+                  }
 
                   const languageSelected =
                     document.querySelector('input[name="english"]:checked') ||
@@ -1516,65 +1770,33 @@ export default function JobDetailPage() {
                     return;
                   }
 
-                  // 2. Collect form values
-                  // const coverLetter =
-                  //   (
-                  //     document.querySelector(
-                  //       'textarea[name="coverLetter"]'
-                  //     ) as HTMLTextAreaElement
-                  //   )?.value || "";
+                  // 2. Collect all form values (text + styled HTML)
+                  // const emailBody = buildEmailBody();
+                  const emailHtml = buildEmailHtml();
 
-                  const emailBody = `
-Employment Application for ${job.title} - ${job.company}
-
-PERSONAL INFORMATION:
-Name: ${(document.querySelector('input[name="name"]') as HTMLInputElement)?.value}
-Street Address: ${(document.querySelector('input[name="streetAddress"]') as HTMLInputElement)?.value}
-City: ${(document.querySelector('input[name="city"]') as HTMLInputElement)?.value}
-State: ${(document.querySelector('input[name="state"]') as HTMLInputElement)?.value}
-Home Phone: ${(document.querySelector('input[name="homePhone"]') as HTMLInputElement)?.value}
-Mobile Phone: ${(document.querySelector('input[name="mobilePhone"]') as HTMLInputElement)?.value}
-Email: ${(document.querySelector('input[name="email"]') as HTMLInputElement)?.value}
-NIN: ${(document.querySelector('input[name="nin"]') as HTMLInputElement)?.value}
-
-EMPLOYMENT DESIRED:
-Position: ${job.title}
-Date Available: ${(document.querySelector('input[name="dateAvailable"]') as HTMLInputElement)?.value}
-
-EDUCATION:
-High School: ${(document.querySelectorAll('input[type="text"]')[7] as HTMLInputElement)?.value}
-University: ${(document.querySelectorAll('input[type="text"]')[11] as HTMLInputElement)?.value}
-Additional Education: ${(document.querySelector("textarea") as HTMLTextAreaElement)?.value}
-
-EMPLOYMENT HISTORY:
-May contact current employer: ${(document.querySelector('input[name="contactCurrent"]:checked') as HTMLInputElement)?.value}
-
-LANGUAGES:
-English: ${(document.querySelector('input[name="english"]:checked') as HTMLInputElement)?.value || "Not specified"}
-Hausa: ${(document.querySelector('input[name="hausa"]:checked') as HTMLInputElement)?.value || "Not specified"}
-Yoruba: ${(document.querySelector('input[name="yoruba"]:checked') as HTMLInputElement)?.value || "Not specified"}
-Igbo: ${(document.querySelector('input[name="igbo"]:checked') as HTMLInputElement)?.value || "Not specified"}
-
-
----
-This application was submitted through the Leadworth Consulting website.
-Please review the complete application form.
-      `.trim();
-
-                  // 3. Send to your backend mailer
+                  // 3. Send to your backend mailer (multipart/form-data)
+                  setIsSubmitting(true);
                   try {
+                    const formData = new FormData();
+                    formData.append("name", "Job Applicant");
+                    formData.append(
+                      "mail",
+                      "leadworthconsultinglimited@gmail.com"
+                    ); // 👈 replace with your real inbox
+                    formData.append(
+                      "subject",
+                      `Employment Application - ${job.title} - ${job.company}`
+                    );
+                    formData.append("html", emailHtml);
+                    if (cvFile) {
+                      formData.append("attachments", cvFile, cvFile.name);
+                    }
+
                     const response = await fetch(
                       "https://techxmail.onrender.com/sendmail",
                       {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          name: "Job Applicant",
-                          mail: "leadworthconsultinglimited@gmail.com", // 👈 replace with your real inbox
-                          subject: `Employment Application - ${job.title} - ${job.company}`,
-                          text: emailBody,
-                          html: `<pre>${emailBody}</pre>`,
-                        }),
+                        body: formData,
                       }
                     );
 
@@ -1593,12 +1815,16 @@ Please review the complete application form.
                       message: "❌ Failed to submit application",
                       type: "error",
                     });
+                  } finally {
+                    setIsSubmitting(false);
                   }
                 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-10 py-4 bg-[#F45625] text-white rounded-xl font-semibold shadow-lg hover:bg-[#e04a1f] transition-all duration-300 text-lg"
+                className="px-10 py-4 bg-[#F45625] text-white rounded-xl font-semibold shadow-lg hover:bg-[#e04a1f] transition-all duration-300 text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
               >
+                {loader}
                 Submit Application
               </motion.button>
             </div>
