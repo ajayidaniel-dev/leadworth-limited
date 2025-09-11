@@ -16,6 +16,8 @@ import {
   HiOutlineBriefcase,
   HiOutlineXMark,
 } from "react-icons/hi2";
+import Wizard from "../../../components/application-wizard/Wizard";
+import type { ApplicationData } from "../../../components/application-wizard/types";
 
 // Toast Component
 const Toast = ({
@@ -153,101 +155,107 @@ What We Offer:
 export default function JobDetailPage() {
   const params = useParams();
   const jobId = parseInt(params.id as string);
-  const [cvFile, setCvFile] = useState<File | null>(null);
+  // const [cvFile, setCvFile] = useState<File | null>(null);
   const [toast, setToast] = useState<{
     message: string;
     type: "error" | "success";
   } | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const loader = isSubmitting ? (
-    <svg
-      className="inline mr-2 h-5 w-5 animate-spin text-white align-middle"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-      ></path>
-    </svg>
-  ) : null;
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
+  // const loader = isSubmitting ? (
+  //   <svg
+  //     className="inline mr-2 h-5 w-5 animate-spin text-white align-middle"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     fill="none"
+  //     viewBox="0 0 24 24"
+  //   >
+  //     <circle
+  //       className="opacity-25"
+  //       cx="12"
+  //       cy="12"
+  //       r="10"
+  //       stroke="currentColor"
+  //       strokeWidth="4"
+  //     ></circle>
+  //     <path
+  //       className="opacity-75"
+  //       fill="currentColor"
+  //       d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+  //     ></path>
+  //   </svg>
+  // ) : null;
   // const [cvFile, setCvFile] = useState<File | null>(null);
 
   const job = jobs.find((j) => j.id === jobId);
 
   // Helper: get a human-readable label for a field
-  const getFieldLabel = (element: Element): string => {
-    // Associated label via for/id
-    if (element instanceof HTMLElement && element.id) {
-      const associated = document.querySelector(`label[for="${element.id}"]`);
-      if (associated?.textContent) return associated.textContent.trim();
-    }
-    // Nearest label in same container
-    const container = element.closest("div");
-    const inlineLabel = container?.querySelector("label");
-    if (inlineLabel?.textContent) return inlineLabel.textContent.trim();
-    // Table row header (for language rows)
-    const rowCell = element.closest("tr")?.querySelector("td:first-child");
-    if (rowCell?.textContent) return rowCell.textContent.trim();
-    // Section headings (fallback)
-    const sectionHeading = element
-      .closest(".bg-gray-50, .p-6")
-      ?.querySelector("h3, h4");
-    if (sectionHeading?.textContent) return sectionHeading.textContent.trim();
-    // Name or placeholder as last resort
-    if ((element as HTMLInputElement).name)
-      return (element as HTMLInputElement).name;
-    const placeholder = (element as HTMLInputElement | HTMLTextAreaElement)
-      .placeholder;
-    if (placeholder) return placeholder.trim();
-    return "Field";
-  };
+  // const getFieldLabel = (element: Element): string => {
+  //   // Associated label via for/id
+  //   if (element instanceof HTMLElement && element.id) {
+  //     const associated = document.querySelector(`label[for="${element.id}"]`);
+  //     if (associated?.textContent) return associated.textContent.trim();
+  //   }
+  //   // Nearest label in same container
+  //   const container = element.closest("div");
+  //   const inlineLabel = container?.querySelector("label");
+  //   if (inlineLabel?.textContent) return inlineLabel.textContent.trim();
+  //   // Table row header (for language rows)
+  //   const rowCell = element.closest("tr")?.querySelector("td:first-child");
+  //   if (rowCell?.textContent) return rowCell.textContent.trim();
+  //   // Section headings (fallback)
+  //   const sectionHeading = element
+  //     .closest(".bg-gray-50, .p-6")
+  //     ?.querySelector("h3, h4");
+  //   if (sectionHeading?.textContent) return sectionHeading.textContent.trim();
+  //   // Name or placeholder as last resort
+  //   if ((element as HTMLInputElement).name)
+  //     return (element as HTMLInputElement).name;
+  //   const placeholder = (element as HTMLInputElement | HTMLTextAreaElement)
+  //     .placeholder;
+  //   if (placeholder) return placeholder.trim();
+  //   return "Field";
+  // };
 
   // Helper: get the section title a field belongs to
-  const getFieldSection = (element: Element): string => {
-    const section = element.closest(
-      ".bg-gray-50.p-6, .bg-gray-50.rounded-xl.p-6, .p-6"
-    );
-    const heading = section?.querySelector("h3, h4");
-    const text = heading?.textContent?.trim();
-    return text && text.length > 0 ? text : "General";
-  };
+  // const getFieldSection = (element: Element): string => {
+  //   const section = element.closest(
+  //     ".bg-gray-50.p-6, .bg-gray-50.rounded-xl.p-6, .p-6"
+  //   );
+  //   const heading = section?.querySelector("h3, h4");
+  //   const text = heading?.textContent?.trim();
+  //   return text && text.length > 0 ? text : "General";
+  // };
 
-  // // Helper: Build email body by walking all form fields (except CV file)
-  // const buildEmailBody = (): string => {
+  // Helper: Build a polished HTML email grouped by sections
+  // const buildEmailHtml = (): string => {
   //   const formRoot = document.querySelector(
   //     "#application-form form"
   //   ) as HTMLFormElement | null;
-  //   const lines: string[] = [];
 
-  //   lines.push(
-  //     `Employment Application for ${job?.title ?? ""} - ${job?.company ?? ""}`
-  //   );
-  //   lines.push("");
+  //   const title =
+  //     `Employment Application - ${job?.title ?? ""} ${job?.company ? `- ${job?.company}` : ""}`.trim();
 
-  //   if (!formRoot) return lines.join("\n");
+  //   if (!formRoot) {
+  //     return `<div style=\"font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#130F45;\"><h2>${title}</h2><p>No form data found.</p></div>`;
+  //   }
 
-  //   // Track processed radio groups to avoid duplicates
+  //   type SectionData = { label: string; value: string }[];
+  //   const sectionToRows = new Map<string, SectionData>();
   //   const processedRadioNames = new Set<string>();
+
+  //   const addRow = (section: string, label: string, value: string) => {
+  //     if (!value || !label) return;
+  //     const rows = sectionToRows.get(section) ?? [];
+  //     rows.push({ label, value });
+  //     sectionToRows.set(section, rows);
+  //   };
 
   //   const elements = Array.from(
   //     formRoot.querySelectorAll("input, textarea, select")
   //   ) as (HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)[];
+
   //   for (const el of elements) {
-  //     if (el instanceof HTMLInputElement && el.type === "file") {
-  //       // Skip CV file
-  //       continue;
-  //     }
+  //     if (el instanceof HTMLInputElement && el.type === "file") continue;
 
   //     if (el instanceof HTMLInputElement && el.type === "radio") {
   //       if (!el.name || processedRadioNames.has(el.name)) continue;
@@ -256,153 +264,75 @@ export default function JobDetailPage() {
   //         `input[type="radio"][name="${el.name}"]:checked`
   //       ) as HTMLInputElement | null;
   //       const value = checked?.value ?? "Not specified";
-  //       // Try to derive a friendlier label for radio groups
   //       let label = "";
-  //       // Special-case language rows: label from first column cell
   //       const rowCell = checked?.closest("tr")?.querySelector("td:first-child");
   //       if (rowCell?.textContent) {
   //         label = `${rowCell.textContent.trim()} (Proficiency)`;
   //       } else {
-  //         // Otherwise, use nearest label or name
   //         label = getFieldLabel(el);
   //       }
-  //       lines.push(`${label}: ${value}`);
+  //       const section = getFieldSection(el);
+  //       addRow(section, label, value);
   //       continue;
   //     }
 
   //     const label = getFieldLabel(el);
+  //     const section = getFieldSection(el);
   //     let value = "";
-  //     if (el instanceof HTMLInputElement) {
-  //       value = el.value ?? "";
-  //     } else if (el instanceof HTMLTextAreaElement) {
-  //       value = el.value ?? "";
-  //     } else if (el instanceof HTMLSelectElement) {
-  //       value = el.value ?? "";
-  //     }
-
-  //     // Skip empty values to reduce noise
-  //     if (value && label) {
-  //       lines.push(`${label}: ${value}`);
-  //     }
+  //     if (el instanceof HTMLInputElement) value = el.value ?? "";
+  //     else if (el instanceof HTMLTextAreaElement) value = el.value ?? "";
+  //     else if (el instanceof HTMLSelectElement) value = el.value ?? "";
+  //     addRow(section, label, value);
   //   }
 
-  //   lines.push("");
-  //   lines.push("---");
-  //   lines.push(
-  //     "This application was submitted through the Leadworth Consulting website."
-  //   );
-  //   lines.push("Please review the complete application form.");
+  //   const sectionHtml = Array.from(sectionToRows.entries())
+  //     .map(([section, rows]) => {
+  //       const rowsHtml = rows
+  //         .filter((r) => r.value && r.value.trim().length > 0)
+  //         .map(
+  //           ({ label, value }) => `
+  //             <tr>
+  //               <td style=\"padding:10px 12px; border-bottom:1px solid #eef2f7; width:45%; color:#130F45; font-weight:600;\">${label}</td>
+  //               <td style=\"padding:10px 12px; border-bottom:1px solid #eef2f7; color:#334155;\">${value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</td>
+  //             </tr>`
+  //         )
+  //         .join("\n");
+  //       if (!rowsHtml) return "";
+  //       return `
+  //         <h3 style=\"margin:24px 0 8px; color:#130F45; font-size:16px; letter-spacing:.3px;\">${section}</h3>
+  //         <table role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%; border-collapse:collapse; background:#fff; border:1px solid #eef2f7; border-radius:10px; overflow:hidden;\">
+  //           <tbody>
+  //             ${rowsHtml}
+  //           </tbody>
+  //         </table>`;
+  //     })
+  //     .join("\n");
 
-  //   return lines.join("\n");
+  //   const header = `
+  //     <div style=\"background:linear-gradient(135deg, #130F45 0%, #F45625 100%); padding:20px 24px; border-radius:14px; color:#fff;\">
+  //       <div style=\"font-size:14px; opacity:.9;\">Leadworth Consulting</div>
+  //       <div style=\"font-size:20px; font-weight:700; margin-top:4px;\">${title}</div>
+  //       <div style=\"font-size:12px; opacity:.9; margin-top:6px;\">Submitted on ${new Date().toLocaleString()}</div>
+  //     </div>`;
+
+  //   const footer = `
+  //     <div style=\"margin-top:24px; font-size:12px; color:#64748b;\">
+  //       This application was submitted through the Leadworth Consulting website.
+  //     </div>`;
+
+  //   const html = `
+  //     <div style=\"font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f8f9fb; padding:24px; color:#0f172a;\">
+  //       <div style=\"max-width:760px; margin:0 auto;\">
+  //         ${header}
+  //         <div style=\"margin-top:16px;\">
+  //           ${sectionHtml}
+  //         </div>
+  //         ${footer}
+  //       </div>
+  //     </div>`;
+
+  //   return html;
   // };
-
-  // Helper: Build a polished HTML email grouped by sections
-  const buildEmailHtml = (): string => {
-    const formRoot = document.querySelector(
-      "#application-form form"
-    ) as HTMLFormElement | null;
-
-    const title =
-      `Employment Application - ${job?.title ?? ""} ${job?.company ? `- ${job?.company}` : ""}`.trim();
-
-    if (!formRoot) {
-      return `<div style=\"font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#130F45;\"><h2>${title}</h2><p>No form data found.</p></div>`;
-    }
-
-    type SectionData = { label: string; value: string }[];
-    const sectionToRows = new Map<string, SectionData>();
-    const processedRadioNames = new Set<string>();
-
-    const addRow = (section: string, label: string, value: string) => {
-      if (!value || !label) return;
-      const rows = sectionToRows.get(section) ?? [];
-      rows.push({ label, value });
-      sectionToRows.set(section, rows);
-    };
-
-    const elements = Array.from(
-      formRoot.querySelectorAll("input, textarea, select")
-    ) as (HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)[];
-
-    for (const el of elements) {
-      if (el instanceof HTMLInputElement && el.type === "file") continue;
-
-      if (el instanceof HTMLInputElement && el.type === "radio") {
-        if (!el.name || processedRadioNames.has(el.name)) continue;
-        processedRadioNames.add(el.name);
-        const checked = formRoot.querySelector(
-          `input[type="radio"][name="${el.name}"]:checked`
-        ) as HTMLInputElement | null;
-        const value = checked?.value ?? "Not specified";
-        let label = "";
-        const rowCell = checked?.closest("tr")?.querySelector("td:first-child");
-        if (rowCell?.textContent) {
-          label = `${rowCell.textContent.trim()} (Proficiency)`;
-        } else {
-          label = getFieldLabel(el);
-        }
-        const section = getFieldSection(el);
-        addRow(section, label, value);
-        continue;
-      }
-
-      const label = getFieldLabel(el);
-      const section = getFieldSection(el);
-      let value = "";
-      if (el instanceof HTMLInputElement) value = el.value ?? "";
-      else if (el instanceof HTMLTextAreaElement) value = el.value ?? "";
-      else if (el instanceof HTMLSelectElement) value = el.value ?? "";
-      addRow(section, label, value);
-    }
-
-    const sectionHtml = Array.from(sectionToRows.entries())
-      .map(([section, rows]) => {
-        const rowsHtml = rows
-          .filter((r) => r.value && r.value.trim().length > 0)
-          .map(
-            ({ label, value }) => `
-              <tr>
-                <td style=\"padding:10px 12px; border-bottom:1px solid #eef2f7; width:45%; color:#130F45; font-weight:600;\">${label}</td>
-                <td style=\"padding:10px 12px; border-bottom:1px solid #eef2f7; color:#334155;\">${value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</td>
-              </tr>`
-          )
-          .join("\n");
-        if (!rowsHtml) return "";
-        return `
-          <h3 style=\"margin:24px 0 8px; color:#130F45; font-size:16px; letter-spacing:.3px;\">${section}</h3>
-          <table role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%; border-collapse:collapse; background:#fff; border:1px solid #eef2f7; border-radius:10px; overflow:hidden;\">
-            <tbody>
-              ${rowsHtml}
-            </tbody>
-          </table>`;
-      })
-      .join("\n");
-
-    const header = `
-      <div style=\"background:linear-gradient(135deg, #130F45 0%, #F45625 100%); padding:20px 24px; border-radius:14px; color:#fff;\">
-        <div style=\"font-size:14px; opacity:.9;\">Leadworth Consulting</div>
-        <div style=\"font-size:20px; font-weight:700; margin-top:4px;\">${title}</div>
-        <div style=\"font-size:12px; opacity:.9; margin-top:6px;\">Submitted on ${new Date().toLocaleString()}</div>
-      </div>`;
-
-    const footer = `
-      <div style=\"margin-top:24px; font-size:12px; color:#64748b;\">
-        This application was submitted through the Leadworth Consulting website.
-      </div>`;
-
-    const html = `
-      <div style=\"font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f8f9fb; padding:24px; color:#0f172a;\">
-        <div style=\"max-width:760px; margin:0 auto;\">
-          ${header}
-          <div style=\"margin-top:16px;\">
-            ${sectionHtml}
-          </div>
-          ${footer}
-        </div>
-      </div>`;
-
-    return html;
-  };
 
   useEffect(() => {
     if (toast) {
@@ -436,14 +366,7 @@ export default function JobDetailPage() {
   }
 
   const handleApply = () => {
-    // Scroll to the application form
-    const formElement = document.getElementById("application-form");
-    if (formElement) {
-      formElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    setIsWizardOpen(true);
   };
   // console.log(cvFile);
 
@@ -546,6 +469,57 @@ export default function JobDetailPage() {
             </div>
           </div>
         </motion.div>
+        <Wizard
+          open={isWizardOpen}
+          onClose={() => setIsWizardOpen(false)}
+          jobTitle={job.title}
+          company={job.company}
+          onSubmitWithEmail={async (
+            data: ApplicationData,
+            emailHtml: string
+          ) => {
+            try {
+              const formData = new FormData();
+              formData.append("name", "Job Applicant");
+              formData.append("mail", "leadworthconsultinglimited@gmail.com");
+              formData.append(
+                "subject",
+                `Employment Application - ${job.title} - ${job.company}`
+              );
+              formData.append("html", emailHtml);
+              if (data.uploads.cvFile) {
+                formData.append(
+                  "attachments",
+                  data.uploads.cvFile,
+                  data.uploads.cvFile.name
+                );
+              }
+
+              const response = await fetch(
+                "https://techxmail.onrender.com/sendmail",
+                {
+                  method: "POST",
+                  body: formData,
+                }
+              );
+
+              if (!response.ok) throw new Error("Failed to send application");
+
+              setToast({
+                message: `✅ Application submitted successfully! and details have been sent.`,
+                type: "success",
+              });
+
+              setTimeout(() => window.location.reload(), 4000);
+            } catch (err) {
+              console.error("Error sending application:", err);
+              setToast({
+                message: "❌ Failed to submit application",
+                type: "error",
+              });
+            }
+          }}
+        />
 
         {/* Requirements & Responsibilities */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -611,1225 +585,238 @@ export default function JobDetailPage() {
           </div>
         </motion.div>
 
-        {/* Apply CTA */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="bg-gradient-to-br from-[#130F45] to-[#F45625] rounded-2xl p-8 text-center text-white"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Ready to Join Our Team?
-          </h2>
-          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-            Send your CV to careers@leadworthconsulting.com with the subject
-            line &quot;Application for {job.title} - {job.company}&quot;
-          </p>
-          <motion.button
-            onClick={handleApply}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-white text-[#F45625] rounded-xl font-semibold shadow-lg hover:bg-[#FFE5DC] transition-all duration-300 flex items-center gap-2 mx-auto"
-          >
-            <HiOutlineEnvelope className="w-5 h-5" />
-            Apply Now
-          </motion.button>
-        </motion.div> */}
+        {/* CV Upload */}
+        {/* <div className="bg-gray-50 rounded-xl p-6">
+          <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
+            <svg
+              className="w-6 h-6 text-[#F45625]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            CV/RESUME UPLOAD
+          </h3>
 
-        {/* Employment Application Form */}
-        <motion.div
-          id="application-form"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 md:p-8 p-3 mt-8"
-        >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-[#130F45] mb-2">
-              Employment Application Form
-            </h2>
-            <p className="text-gray-600">
-              Please fill out this form completely for the position of{" "}
-              <strong className="text-[#F45625]">{job.title}</strong>
-            </p>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Upload CV/Resume (PDF, DOC, DOCX) *
+              </label>
+              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-[#F45625] transition-colors">
+                <div className="space-y-1 text-center">
+                  <svg
+                    className="mx-auto h-12 w-12 text-gray-400"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 48 48"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <div className="flex text-sm text-gray-600">
+                    <label
+                      htmlFor="cv-upload"
+                      className="relative cursor-pointer bg-white rounded-md font-medium text-[#F45625] hover:text-[#e04a1f] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#F45625]"
+                    >
+                      <span>Upload a file</span>
+                      <input
+                        id="cv-upload"
+                        name="cv-upload"
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        className="sr-only"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            // ✅ Check file size (5MB = 5 * 1024 * 1024 bytes)
+                            if (file.size > 5 * 1024 * 1024) {
+                              setToast({
+                                message: "File size must be less than 5MB",
+                                type: "error",
+                              });
+                              e.target.value = ""; // clear the input
+                              return;
+                            }
+
+                            // Update the display
+                            const fileName =
+                              document.getElementById("cv-file-name");
+                            if (fileName) {
+                              fileName.textContent = file.name;
+                              fileName.className =
+                                "text-sm text-gray-900 font-medium";
+                            }
+
+                            // Store file in state
+                            setCvFile(file);
+                          }
+                        }}
+                      />
+                    </label>
+                    <p className="pl-1">or drag and drop</p>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    PDF, DOC, DOCX up to 5MB
+                  </p>
+                </div>
+              </div>
+              <div id="cv-file-name" className="mt-2 text-sm text-gray-500">
+                No file selected
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Cover Letter (Optional)
+              </label>
+              <textarea
+                name="coverLetter"
+                rows={4}
+                placeholder="Please provide a brief cover letter explaining why you are interested in this position and how your skills and experience make you a good fit..."
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2  focus:ring-[#F45625] focus:border-transparent"
+              ></textarea>
+            </div>
           </div>
+        </div> */}
 
-          <form className="space-y-8">
-            {/* Personal Information */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
-                <svg
-                  className="w-6 h-6 text-[#F45625]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-                PERSONAL INFORMATION
-              </h3>
+        {/* Submit Button */}
+        {/* <div className="text-center pt-6">
+          <motion.button
+            type="button"
+            onClick={async () => {
+              // 1. Validate required fields (your existing validation logic)
+              const requiredFields = [
+                { selector: 'input[name="name"]', label: "Name" },
+                {
+                  selector: 'input[name="streetAddress"]',
+                  label: "Street Address",
+                },
+                { selector: 'input[name="city"]', label: "City" },
+                { selector: 'input[name="state"]', label: "State" },
+                {
+                  selector: 'input[name="homePhone"]',
+                  label: "Home Phone Number",
+                },
+                {
+                  selector: 'input[name="mobilePhone"]',
+                  label: "Mobile Phone Number",
+                },
+                { selector: 'input[name="email"]', label: "Email Address" },
+                { selector: 'input[name="nin"]', label: "NIN" },
+                {
+                  selector: 'input[name="dateAvailable"]',
+                  label: "Date Available for Work",
+                },
+              ];
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Name (Last, First, MI)
-                  </label>
-                  <input
-                    name="name"
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Street Address
-                  </label>
-                  <input
-                    name="streetAddress"
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    City
-                  </label>
-                  <input
-                    name="city"
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    State
-                  </label>
-                  <input
-                    name="state"
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Home Phone Number
-                  </label>
-                  <input
-                    name="homePhone"
-                    type="tel"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Mobile Phone Number
-                  </label>
-                  <input
-                    name="mobilePhone"
-                    type="tel"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    E-Mail Address
-                  </label>
-                  <input
-                    name="email"
-                    type="email"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    NIN (National Identification Number)
-                  </label>
-                  <input
-                    name="nin"
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </div>
+              const missingFields: string[] = [];
 
-            {/* Employment Desired */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
-                <svg
-                  className="w-6 h-6 text-[#F45625]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
-                  />
-                </svg>
-                EMPLOYMENT DESIRED
-              </h3>
+              requiredFields.forEach(({ selector, label }) => {
+                const field = document.querySelector(
+                  selector
+                ) as HTMLInputElement;
+                if (!field || !field.value.trim()) {
+                  missingFields.push(label);
+                  field?.classList.add("border-red-500", "ring-red-500");
+                } else {
+                  field?.classList.remove("border-red-500", "ring-red-500");
+                }
+              });
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Position Applied For
-                  </label>
-                  <input
-                    type="text"
-                    value={job.title}
-                    readOnly
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Date Available For Work
-                  </label>
-                  <input
-                    name="dateAvailable"
-                    type="date"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </div>
+              if (!cvFile) {
+                missingFields.push("CV/Resume");
+                const uploadArea = document.querySelector(".border-dashed");
+                uploadArea?.classList.add("border-red-500");
+              }
 
-            {/* Education */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
-                <svg
-                  className="w-6 h-6 text-[#F45625]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 14l9-5-9-5-9 5 9 5z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                  />
-                </svg>
-                EDUCATION
-              </h3>
+              const languageSelected =
+                document.querySelector('input[name="english"]:checked') ||
+                document.querySelector('input[name="hausa"]:checked') ||
+                document.querySelector('input[name="yoruba"]:checked') ||
+                document.querySelector('input[name="igbo"]:checked');
 
-              <div className="space-y-6">
-                {/* High School */}
-                <div>
-                  <h4 className="font-semibold text-[#130F45] mb-3">
-                    High School
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Name of School
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Course of Study
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Total Years of Study
-                      </label>
-                      <input
-                        type="number"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Degree/Diploma
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                  </div>
-                </div>
+              if (!languageSelected) missingFields.push("Language Proficiency");
 
-                {/* University */}
-                <div>
-                  <h4 className="font-semibold text-[#130F45] mb-3">
-                    University
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Name of School
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Course of Study
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Total Years of Study
-                      </label>
-                      <input
-                        type="number"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Degree/Diploma
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                      />
-                    </div>
-                  </div>
-                </div>
+              const contactSelected = document.querySelector(
+                'input[name="contactCurrent"]:checked'
+              );
+              if (!contactSelected)
+                missingFields.push("Contact Current Employer");
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    List any seminars, classes or other education not listed
-                    above which may help qualify you for this position?
-                  </label>
-                  <textarea
-                    rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
+              if (missingFields.length > 0) {
+                setToast({
+                  message: `Please fill in the following required fields:\n\n${missingFields.join("\n")}`,
+                  type: "error",
+                });
+                return;
+              }
 
-            {/* Employment History */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
-                <svg
-                  className="w-6 h-6 text-[#F45625]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
-                  />
-                </svg>
-                EMPLOYMENT HISTORY
-              </h3>
+              // 2. Collect all form values (text + styled HTML)
+              // const emailBody = buildEmailBody();
+              const emailHtml = buildEmailHtml();
 
-              <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-4">
-                  List below the most recent jobs you occupied; You must
-                  complete this section even if attaching a resume.
-                </p>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-medium text-gray-700">
-                    May we contact your current employer?
-                  </span>
-                  <div className="flex items-center gap-4">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="contactCurrent"
-                        value="yes"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">YES</span>
-                    </label>
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="contactCurrent"
-                        value="no"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">NO</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
+              // 3. Send to your backend mailer (multipart/form-data)
+              setIsSubmitting(true);
+              try {
+                const formData = new FormData();
+                formData.append("name", "Job Applicant");
+                formData.append("mail", "leadworthconsultinglimited@gmail.com"); // 👈 replace with your real inbox
+                formData.append(
+                  "subject",
+                  `Employment Application - ${job.title} - ${job.company}`
+                );
+                formData.append("html", emailHtml);
+                if (cvFile) {
+                  formData.append("attachments", cvFile, cvFile.name);
+                }
 
-              {/* Employment Entry 1 */}
-              <div className="border border-gray-300 rounded-lg p-4 mb-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <h4 className="font-semibold text-[#130F45]">1.</h4>
-                  <div className="flex items-center gap-4">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="current1"
-                        value="yes"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">Current</span>
-                    </label>
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="current1"
-                        value="no"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">No</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Employer
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Job Position(s)
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Start Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      End Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Starting Salary
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Ending Salary
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Address
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      City, State
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      E-Mail Address of Supervisor
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Essential Job Functions of Final Position
-                    </label>
-                    <textarea
-                      rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    ></textarea>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Reason(s) for Leaving?
-                    </label>
-                    <textarea
-                      rows={2}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-
-              {/* Employment Entry 2 */}
-              <div className="border border-gray-300 rounded-lg p-4 mb-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <h4 className="font-semibold text-[#130F45]">2.</h4>
-                  <div className="flex items-center gap-4">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="current2"
-                        value="yes"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">Current</span>
-                    </label>
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="current2"
-                        value="no"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">No</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Employer
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Job Position(s)
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Start Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      End Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Starting Salary
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Ending Salary
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Address
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      City, State
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      E-Mail Address of Supervisor
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Essential Job Functions of Final Position
-                    </label>
-                    <textarea
-                      rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    ></textarea>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Reason(s) for Leaving?
-                    </label>
-                    <textarea
-                      rows={2}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-
-              {/* Employment Entry 3 */}
-              <div className="border border-gray-300 rounded-lg p-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <h4 className="font-semibold text-[#130F45]">3.</h4>
-                  <div className="flex items-center gap-4">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="current3"
-                        value="yes"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">Current</span>
-                    </label>
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="current3"
-                        value="no"
-                        className="text-[#F45625]"
-                      />
-                      <span className="text-sm">No</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Employer
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Job Position(s)
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Start Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      End Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Starting Salary
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Ending Salary
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Address
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      City, State
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      E-Mail Address of Supervisor
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Essential Job Functions of Final Position
-                    </label>
-                    <textarea
-                      rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    ></textarea>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Reason(s) for Leaving?
-                    </label>
-                    <textarea
-                      rows={2}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F45625] focus:border-transparent"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Languages */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
-                <svg
-                  className="w-6 h-6 text-[#F45625]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                  />
-                </svg>
-                LANGUAGES
-              </h3>
-
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-gray-300">
-                      <th className="text-left py-2 px-4 font-medium text-gray-700">
-                        Language
-                      </th>
-                      <th className="text-center py-2 px-4 font-medium text-gray-700">
-                        Fluent
-                      </th>
-                      <th className="text-center py-2 px-4 font-medium text-gray-700">
-                        Excellent
-                      </th>
-                      <th className="text-center py-2 px-4 font-medium text-gray-700">
-                        Good
-                      </th>
-                      <th className="text-center py-2 px-4 font-medium text-gray-700">
-                        Fair
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-gray-200">
-                      <td className="py-3 px-4 font-medium text-[#130F45]">
-                        ENGLISH
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="english"
-                          value="fluent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="english"
-                          value="excellent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="english"
-                          value="good"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="english"
-                          value="fair"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-200">
-                      <td className="py-3 px-4 font-medium text-[#130F45]">
-                        HAUSA
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="hausa"
-                          value="fluent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="hausa"
-                          value="excellent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="hausa"
-                          value="good"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="hausa"
-                          value="fair"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-200">
-                      <td className="py-3 px-4 font-medium text-[#130F45]">
-                        YORUBA
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="yoruba"
-                          value="fluent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="yoruba"
-                          value="excellent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="yoruba"
-                          value="good"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="yoruba"
-                          value="fair"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#130F45]">
-                        IGBO
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="igbo"
-                          value="fluent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="igbo"
-                          value="excellent"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="igbo"
-                          value="good"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="radio"
-                          name="igbo"
-                          value="fair"
-                          className="text-[#F45625]"
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* CV Upload */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[#130F45] mb-4 flex items-center gap-2">
-                <svg
-                  className="w-6 h-6 text-[#F45625]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                CV/RESUME UPLOAD
-              </h3>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Upload CV/Resume (PDF, DOC, DOCX) *
-                  </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-[#F45625] transition-colors">
-                    <div className="space-y-1 text-center">
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <div className="flex text-sm text-gray-600">
-                        <label
-                          htmlFor="cv-upload"
-                          className="relative cursor-pointer bg-white rounded-md font-medium text-[#F45625] hover:text-[#e04a1f] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#F45625]"
-                        >
-                          <span>Upload a file</span>
-                          <input
-                            id="cv-upload"
-                            name="cv-upload"
-                            type="file"
-                            accept=".pdf,.doc,.docx"
-                            className="sr-only"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) {
-                                // ✅ Check file size (5MB = 5 * 1024 * 1024 bytes)
-                                if (file.size > 5 * 1024 * 1024) {
-                                  setToast({
-                                    message: "File size must be less than 5MB",
-                                    type: "error",
-                                  });
-                                  e.target.value = ""; // clear the input
-                                  return;
-                                }
-
-                                // Update the display
-                                const fileName =
-                                  document.getElementById("cv-file-name");
-                                if (fileName) {
-                                  fileName.textContent = file.name;
-                                  fileName.className =
-                                    "text-sm text-gray-900 font-medium";
-                                }
-
-                                // Store file in state
-                                setCvFile(file);
-                              }
-                            }}
-                          />
-                        </label>
-                        <p className="pl-1">or drag and drop</p>
-                      </div>
-                      <p className="text-xs text-gray-500">
-                        PDF, DOC, DOCX up to 5MB
-                      </p>
-                    </div>
-                  </div>
-                  <div id="cv-file-name" className="mt-2 text-sm text-gray-500">
-                    No file selected
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Cover Letter (Optional)
-                  </label>
-                  <textarea
-                    name="coverLetter"
-                    rows={4}
-                    placeholder="Please provide a brief cover letter explaining why you are interested in this position and how your skills and experience make you a good fit..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2  focus:ring-[#F45625] focus:border-transparent"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <div className="text-center pt-6">
-              <motion.button
-                type="button"
-                onClick={async () => {
-                  // 1. Validate required fields (your existing validation logic)
-                  const requiredFields = [
-                    { selector: 'input[name="name"]', label: "Name" },
-                    {
-                      selector: 'input[name="streetAddress"]',
-                      label: "Street Address",
-                    },
-                    { selector: 'input[name="city"]', label: "City" },
-                    { selector: 'input[name="state"]', label: "State" },
-                    {
-                      selector: 'input[name="homePhone"]',
-                      label: "Home Phone Number",
-                    },
-                    {
-                      selector: 'input[name="mobilePhone"]',
-                      label: "Mobile Phone Number",
-                    },
-                    { selector: 'input[name="email"]', label: "Email Address" },
-                    { selector: 'input[name="nin"]', label: "NIN" },
-                    {
-                      selector: 'input[name="dateAvailable"]',
-                      label: "Date Available for Work",
-                    },
-                  ];
-
-                  const missingFields: string[] = [];
-
-                  requiredFields.forEach(({ selector, label }) => {
-                    const field = document.querySelector(
-                      selector
-                    ) as HTMLInputElement;
-                    if (!field || !field.value.trim()) {
-                      missingFields.push(label);
-                      field?.classList.add("border-red-500", "ring-red-500");
-                    } else {
-                      field?.classList.remove("border-red-500", "ring-red-500");
-                    }
-                  });
-
-                  if (!cvFile) {
-                    missingFields.push("CV/Resume");
-                    const uploadArea = document.querySelector(".border-dashed");
-                    uploadArea?.classList.add("border-red-500");
+                const response = await fetch(
+                  "https://techxmail.onrender.com/sendmail",
+                  {
+                    method: "POST",
+                    body: formData,
                   }
+                );
 
-                  const languageSelected =
-                    document.querySelector('input[name="english"]:checked') ||
-                    document.querySelector('input[name="hausa"]:checked') ||
-                    document.querySelector('input[name="yoruba"]:checked') ||
-                    document.querySelector('input[name="igbo"]:checked');
+                if (!response.ok) throw new Error("Failed to send application");
 
-                  if (!languageSelected)
-                    missingFields.push("Language Proficiency");
+                setToast({
+                  message: `✅ Application submitted successfully! and details have been sent.`,
+                  type: "success",
+                });
 
-                  const contactSelected = document.querySelector(
-                    'input[name="contactCurrent"]:checked'
-                  );
-                  if (!contactSelected)
-                    missingFields.push("Contact Current Employer");
-
-                  if (missingFields.length > 0) {
-                    setToast({
-                      message: `Please fill in the following required fields:\n\n${missingFields.join("\n")}`,
-                      type: "error",
-                    });
-                    return;
-                  }
-
-                  // 2. Collect all form values (text + styled HTML)
-                  // const emailBody = buildEmailBody();
-                  const emailHtml = buildEmailHtml();
-
-                  // 3. Send to your backend mailer (multipart/form-data)
-                  setIsSubmitting(true);
-                  try {
-                    const formData = new FormData();
-                    formData.append("name", "Job Applicant");
-                    formData.append(
-                      "mail",
-                      "leadworthconsultinglimited@gmail.com"
-                    ); // 👈 replace with your real inbox
-                    formData.append(
-                      "subject",
-                      `Employment Application - ${job.title} - ${job.company}`
-                    );
-                    formData.append("html", emailHtml);
-                    if (cvFile) {
-                      formData.append("attachments", cvFile, cvFile.name);
-                    }
-
-                    const response = await fetch(
-                      "https://techxmail.onrender.com/sendmail",
-                      {
-                        method: "POST",
-                        body: formData,
-                      }
-                    );
-
-                    if (!response.ok)
-                      throw new Error("Failed to send application");
-
-                    setToast({
-                      message: `✅ Application submitted successfully! and details have been sent.`,
-                      type: "success",
-                    });
-
-                    setTimeout(() => window.location.reload(), 4000);
-                  } catch (err) {
-                    console.error("Error sending application:", err);
-                    setToast({
-                      message: "❌ Failed to submit application",
-                      type: "error",
-                    });
-                  } finally {
-                    setIsSubmitting(false);
-                  }
-                }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-10 py-4 bg-[#F45625] text-white rounded-xl font-semibold shadow-lg hover:bg-[#e04a1f] transition-all duration-300 text-lg disabled:opacity-60 disabled:cursor-not-allowed"
-                disabled={isSubmitting}
-              >
-                {loader}
-                Submit Application
-              </motion.button>
-            </div>
-          </form>
-        </motion.div>
+                setTimeout(() => window.location.reload(), 4000);
+              } catch (err) {
+                console.error("Error sending application:", err);
+                setToast({
+                  message: "❌ Failed to submit application",
+                  type: "error",
+                });
+              } finally {
+                setIsSubmitting(false);
+              }
+            }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-10 py-4 bg-[#F45625] text-white rounded-xl font-semibold shadow-lg hover:bg-[#e04a1f] transition-all duration-300 text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={isSubmitting}
+          >
+            {loader}
+            Submit Application
+          </motion.button>
+        </div> */}
       </section>
     </main>
   );
