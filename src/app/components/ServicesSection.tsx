@@ -1,8 +1,22 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
+  {
+    title: "WinResponse",
+    desc: "WinResponse empowers modern organizations to evolve recruitment, blending innovation with strategy in a single, future-ready platform.",
+    icon: (
+      <Image
+        src="/WinResponse Blue.png"
+        alt="WinResponse Logo"
+        width={48}
+        height={48}
+        className="object-contain"
+      />
+    ),
+  },
   {
     title: "HR Audit & ISO 30414",
     desc: "We help organizations measure, manage, and report workforce performance with globally recognized standards. Ensure compliance, transparency, and data-driven HR strategies with ISO 30414 human capital reporting.",
@@ -81,40 +95,6 @@ const services = [
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "HR Outsourcing",
-    desc: "Streamlining HR processes so you can focus on growth. We handle payroll, compliance, employee relations, and more, acting as your trusted HR partner for efficiency and peace of mind.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-        <rect x="8" y="20" width="32" height="12" rx="6" fill="#00AEEF" />
-        <rect
-          x="8"
-          y="20"
-          width="32"
-          height="12"
-          rx="6"
-          stroke="#130F45"
-          strokeWidth="2"
-        />
-        <circle
-          cx="16"
-          cy="26"
-          r="4"
-          fill="#F45625"
-          stroke="#130F45"
-          strokeWidth="2"
-        />
-        <circle
-          cx="32"
-          cy="26"
-          r="4"
-          fill="#FFE5DC"
-          stroke="#130F45"
-          strokeWidth="2"
         />
       </svg>
     ),
@@ -260,9 +240,12 @@ export default function ServicesSection() {
               <div className="mb-4 bg-[#00AEEF]/10 rounded-full p-4">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold text-[#130F45] mb-2">
+              <h3
+                className={`text-xl font-semibold text-[#130F45] ${service.title === "WinResponse" ? "text-purple-800" : ""} mb-2`}
+              >
                 {service.title}
               </h3>
+
               <p className="text-[#333333] text-base">{service.desc}</p>
               {/* Fun floating badge */}
               <motion.div

@@ -14,6 +14,76 @@ import { motion } from "framer-motion";
 
 // Service details data
 const serviceDetails = {
+  winresponse: {
+    title: "WinResponse",
+    description:
+      "WinResponse empowers modern organizations to evolve recruitment, blending innovation with strategy in a single, future-ready platform.",
+    overview:
+      "WinResponse is an all-in-one recruitment toolbox that streamlines hiring and cuts down tooling costs by uniting every essential feature needed to standout and win in today’s talent market.",
+    summary: "",
+    features: [
+      {
+        title: "Role management",
+        description: "Set of tools to jumpstart the hiring process.",
+        details: [
+          "AI Assisted role creation",
+          "AI Assisted applicant review",
+          "Scheduling",
+          "Sync calendar for applicant appointment booking",
+        ],
+      },
+      {
+        title: "Sourcing",
+        description:
+          "Finding the right talent and getting them into your process .",
+        details: [
+          "Job page integration",
+          "Dynamic talent discovery from global profiles",
+          "Automated outreach",
+          "AI candidate fit analysis",
+        ],
+      },
+      {
+        title: "Selection / Hiring",
+        description: "Effortless selection, offers, and probation.",
+        details: [
+          "AI Assisted candidate comparison",
+          "Offer management",
+          "Background check",
+          "Probation management",
+        ],
+      },
+      {
+        title: "Vetting / Interviewing",
+        description: "Modern interviewing made intelligent.",
+        details: [
+          "AI Mock Interview",
+          "Built-in video conferencing",
+          "Vetting outsourcing to third-party",
+          "Innovative candidate scoring process",
+        ],
+      },
+    ],
+    benefits: [
+      "One cost for all recruitment tools",
+      "Enhance employer branding",
+      "Fast and transparent hiring process",
+      "Turn applicant to representatives",
+      "Zero applicant ghosting",
+      "Premium candidate engagement communication.",
+    ],
+    process: [
+      "Role creating and applicant scheduling ",
+      "Sourcing",
+      "AI Interviewer & Built-in Video Conferencing",
+      "AI Candidate Evaluation",
+      "AI Notetaker",
+      "Candidate Engagement Communication",
+      "Recruitment Analytics ",
+      "AI Background checker",
+      "Employment Management & Engagement",
+    ],
+  },
   audit: {
     title: "HR Audit & ISO 30414:2018 Disclosure",
     description:
@@ -858,6 +928,9 @@ export default function ServicePage({
                     >
                       <option value="" className="bg-[#130F45]">
                         Select a service
+                      </option>
+                      <option value="WinResponse" className="bg-[#130F45]">
+                        WinResponse
                       </option>
                       <option value="Recruitment" className="bg-[#130F45]">
                         Recruitment

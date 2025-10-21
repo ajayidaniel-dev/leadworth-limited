@@ -23,6 +23,26 @@ import { motion } from "framer-motion";
 
 const services = [
   {
+    icon: (
+      <Image
+        src="/WinResponse Blue.png"
+        alt="WinResponse Logo"
+        width={48}
+        height={48}
+        className="object-contain"
+      />
+    ),
+    title: "WinResponse",
+    desc: "A 9-in-1 recruitment toolbox built for modern hiring teams to attract and win top talent.",
+    features: [
+      "One cost for all recruitment tools",
+      "Enhance employer branding",
+      "Zero applicant ghosting",
+      "Premium candidate engagement communication.",
+    ],
+    cta: "/services/winresponse",
+  },
+  {
     icon: <HiOutlineDocumentPlus className="w-8 h-8 text-[#F45625]" />,
     title: "HR Audit & ISO 30414",
     desc: "Assess, measure, and report workforce performance with global HR audit standards.",
@@ -699,6 +719,9 @@ export default function ServicesPage() {
                     >
                       <option value="" className="bg-[#130F45]">
                         Select a service
+                      </option>
+                      <option value="WinResponse" className="bg-[#130F45]">
+                        WinResponse
                       </option>
                       <option value="Recruitment" className="bg-[#130F45]">
                         Recruitment
