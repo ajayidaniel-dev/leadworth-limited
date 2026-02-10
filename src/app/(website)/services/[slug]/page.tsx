@@ -544,6 +544,64 @@ const serviceDetails = {
       "Continuous improvement",
     ],
   },
+  "data-privacy-protection": {
+    title: "Data Privacy & Protection",
+    description:
+      "Compliance, breach support, and advisory for Data Controllers and Data Administration, including DPO services and due-diligence.",
+    overview:
+      "We support Data Controllers and Data Administration with full-spectrum data protection and privacy services. From compliance and breach response to advisory, training, and outsourced DPO services, we help you meet regulations and manage risk. Our due-diligence and breach impact assessments give you clear, actionable insights.",
+    benefits: [
+      "Data Protection compliance and breach services for Data Controller and Data Administration.",
+      "Data protection & privacy advisory services.",
+      "Data protection training & awareness services.",
+      "Data regulations contract drafting and advisory.",
+      "Data protection and privacy breach remediation planning & support services.",
+      "Information privacy breach impact assessment.",
+      "Data privacy breach impact assessment.",
+      "Data protection and privacy due-diligence investigation.",
+      "Outsourced Data Protection Officer.",
+    ],
+    features: [
+      {
+        title: "Compliance & Breach Services",
+        description:
+          "End-to-end support for data protection compliance and breach response for Data Controllers and Data Administration.",
+        details: [
+          "Data Protection compliance and breach services for Data Controller and Data Administration.",
+          "Data protection and privacy breach remediation planning & support services.",
+          "Information privacy breach impact assessment.",
+          "Data privacy breach impact assessment.",
+        ],
+      },
+      {
+        title: "Advisory & Training",
+        description:
+          "Advisory, training, and contract support to build and maintain a strong privacy posture.",
+        details: [
+          "Data protection & privacy advisory services.",
+          "Data protection training & awareness services.",
+          "Data regulations contract drafting and advisory.",
+        ],
+      },
+      {
+        title: "Due Diligence & DPO",
+        description:
+          "Investigation and outsourced Data Protection Officer services for ongoing compliance.",
+        details: [
+          "Data protection and privacy due-diligence investigation.",
+          "Outsourced Data Protection Officer.",
+        ],
+      },
+    ],
+    process: [
+      "Initial consultation and scope",
+      "Gap and risk assessment",
+      "Advisory and implementation support",
+      "Remediation planning and breach support",
+      "Training and awareness rollout",
+      "Ongoing DPO and compliance monitoring",
+    ],
+  },
 };
 
 export default function ServicePage({
@@ -958,6 +1016,12 @@ export default function ServicePage({
                         className="bg-[#130F45]"
                       >
                         Employee Relations
+                      </option>
+                      <option
+                        value="Data Privacy & Protection"
+                        className="bg-[#130F45]"
+                      >
+                        Data Privacy & Protection
                       </option>
                     </select>
                   </div>

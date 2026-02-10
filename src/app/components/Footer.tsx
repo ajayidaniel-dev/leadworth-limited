@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="bg-[#130F45] text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Company Info */}
           <div className="space-y-6">
             <Image
@@ -107,6 +107,10 @@ export default function Footer() {
                   name: "Employee Relations",
                   href: "/services/employee-relations",
                 },
+                {
+                  name: "Data Privacy & Protection",
+                  href: "/services/data-privacy-protection",
+                },
               ].map((service) => (
                 <li key={service.name}>
                   <Link
@@ -117,6 +121,29 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Legal</h3>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  href="/privacy"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cookies"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  Cookie Policy
+                </Link>
+              </li>
             </ul>
           </div>
 

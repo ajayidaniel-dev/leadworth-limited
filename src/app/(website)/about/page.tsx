@@ -17,7 +17,8 @@ import Link from "next/link";
 const team = [
   {
     name: "Mr Wale Arowojobe",
-    role: "Founder & CEO",
+    achievements: "FCIPM, HRPL, FIIM, CDPO",
+    role: "Managing Consultant",
     img: "/ceo.jpg",
     email: "wale.arowojobe@leadworthconsulting.com",
     linkedin: "https://www.linkedin.com/in/wale-arowojobe-fcipm-hrpl-68568b29/",
@@ -455,6 +456,9 @@ export default function AboutPage() {
               </div>
               <h4 className="text-lg font-bold text-[#130F45] mb-1 group-hover:text-[#F45625] transition-colors">
                 {member.name}
+              </h4>
+              <h4 className="text-md font-medium text-[#130F45] mb-1 transition-colors">
+                {member.achievements}
               </h4>
               <a
                 href={`mailto:${member.email}`}

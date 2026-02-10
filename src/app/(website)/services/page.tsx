@@ -126,6 +126,18 @@ const services = [
     ],
     cta: "/services/employee-relations",
   },
+  {
+    icon: <HiOutlineShieldCheck className="w-8 h-8 text-[#F45625]" />,
+    title: "Data Privacy & Protection",
+    desc: "Compliance, breach support, and advisory for Data Controllers and Data Administration, including DPO services and due-diligence.",
+    features: [
+      "Data protection & privacy advisory services.",
+      "Data protection training & awareness services.",
+
+      "Outsourced Data Protection Officer.",
+    ],
+    cta: "/services/data-privacy-protection",
+  },
 ];
 
 const processSteps = [
@@ -749,6 +761,12 @@ export default function ServicesPage() {
                         className="bg-[#130F45]"
                       >
                         Employee Relations
+                      </option>
+                      <option
+                        value="Data Privacy & Protection"
+                        className="bg-[#130F45]"
+                      >
+                        Data Privacy & Protection
                       </option>
                     </select>
                   </div>

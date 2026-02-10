@@ -162,6 +162,8 @@ export default function JobDetailPage() {
   } | null>(null);
   // const [isSubmitting, setIsSubmitting] = useState(false);
   const [isWizardOpen, setIsWizardOpen] = useState(false);
+  const [showPolicyModal, setShowPolicyModal] = useState(true);
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   // const loader = isSubmitting ? (
   //   <svg
   //     className="inline mr-2 h-5 w-5 animate-spin text-white align-middle"
@@ -380,6 +382,71 @@ export default function JobDetailPage() {
           onClose={() => setToast(null)}
         />
       )}
+
+      {/* Policy agreement modal */}
+      {showPolicyModal && job && (
+        <div
+          className="fixed inset-0 z-[110] flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="policy-modal-heading"
+        >
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 md:p-8">
+            <h2
+              id="policy-modal-heading"
+              className="text-xl md:text-2xl font-bold text-[#130F45] mb-4"
+            >
+              Before you apply
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Please read our{" "}
+              <Link
+                href="/privacy"
+                className="text-[#F45625] underline hover:text-[#130F45] font-medium"
+              >
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/cookies"
+                className="text-[#F45625] underline hover:text-[#130F45] font-medium"
+              >
+                Cookie Policy
+              </Link>{" "}
+              before proceeding with your application.
+            </p>
+            <div className="flex items-start gap-3 mb-6">
+              <input
+                type="checkbox"
+                id="policy-agreement"
+                checked={agreedToPolicy}
+                onChange={(e) => setAgreedToPolicy(e.target.checked)}
+                className="mt-1 h-5 w-5 rounded border-gray-300 text-[#F45625] focus:ring-[#F45625]"
+              />
+              <label
+                htmlFor="policy-agreement"
+                className="text-gray-700 cursor-pointer select-none"
+              >
+                I have read and agree to the Privacy Policy and Cookie Policy.
+              </label>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowPolicyModal(false)}
+              disabled={!agreedToPolicy}
+              className={`w-full px-6 py-3 rounded-xl font-semibold transition-colors duration-300 ${
+                agreedToPolicy
+                  ? "bg-[#F45625] text-white hover:bg-[#e04a1f]"
+                  : "bg-gray-200 text-gray-500 cursor-not-allowed"
+              }`}
+            >
+              Proceed
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <section className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-6">
