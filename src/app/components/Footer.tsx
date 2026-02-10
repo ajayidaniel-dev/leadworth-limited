@@ -126,7 +126,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Legal</h3>
+            <h3 className="text-lg font-semibold "></h3>
             <ul className="space-y-4">
               <li>
                 <Link

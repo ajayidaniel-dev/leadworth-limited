@@ -38,7 +38,7 @@ export default function CookieConsentBanner() {
           <p className="text-sm sm:text-base text-white/90">
             We use cookies to improve your experience and analyze site traffic.{" "}
             <Link
-              href="/privacy#retention"
+              href="/retention"
               className="text-[#F45625] underline hover:text-[#FFE5DC] font-medium"
             >
               Read more

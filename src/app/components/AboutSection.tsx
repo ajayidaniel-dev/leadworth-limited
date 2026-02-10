@@ -72,7 +72,7 @@ export default function AboutSection() {
             recruitment and Human Resources (HR) consulting firm with the
             Corporate Affairs Commission. LWC is a Nigerian company which
             specializes in HR management consulting and Organizational
-            competence development, Training, ISO 30414 certification,
+            competence development, Training, ISO 30414:2025 certification,
             Recruitment services, Manpower Outsourcing, employee background
             verification services, employee assistance services,
             coaching/mentoring services, logistics and facilities Management

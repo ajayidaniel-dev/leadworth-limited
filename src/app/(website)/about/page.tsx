@@ -248,7 +248,7 @@ export default function AboutPage() {
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
                 <span className="text-gray-700 text-sm">
-                  ISO 30414 Certification
+                  ISO 30414:2025 Certification
                 </span>
               </div>
               <div className="flex items-center gap-2">

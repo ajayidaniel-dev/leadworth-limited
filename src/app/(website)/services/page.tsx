@@ -44,11 +44,11 @@ const services = [
   },
   {
     icon: <HiOutlineDocumentPlus className="w-8 h-8 text-[#F45625]" />,
-    title: "HR Audit & ISO 30414",
+    title: "HR Audit & ISO 30414:2025",
     desc: "Assess, measure, and report workforce performance with global HR audit standards.",
     features: [
       "Human capital disclosure",
-      "ISO 30414 audit",
+      "ISO 30414:2025 audit",
       "Strategic HR analytics",
       "Data-driven decision making",
     ],

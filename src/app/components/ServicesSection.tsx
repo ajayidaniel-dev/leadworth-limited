@@ -18,8 +18,8 @@ const services = [
     ),
   },
   {
-    title: "HR Audit & ISO 30414",
-    desc: "We help organizations measure, manage, and report workforce performance with globally recognized standards. Ensure compliance, transparency, and data-driven HR strategies with ISO 30414 human capital reporting.",
+    title: "HR Audit & ISO 30414:2025",
+    desc: "We help organizations measure, manage, and report workforce performance with globally recognized standards. Ensure compliance, transparency, and data-driven HR strategies with ISO 30414:2025 human capital reporting.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
         <rect x="10" y="10" width="28" height="28" rx="4" fill="#F45625" />

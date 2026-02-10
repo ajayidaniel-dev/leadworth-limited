@@ -85,11 +85,11 @@ const serviceDetails = {
     ],
   },
   audit: {
-    title: "HR Audit & ISO 30414:2018 Disclosure",
+    title: "HR Audit & ISO 30414:2025 Disclosure",
     description:
-      "We provide comprehensive HR audit services aligned with the ISO 30414:2018 human capital reporting standard. Our goal is to help organizations assess, measure, and improve human capital performance and reporting.",
+      "We provide comprehensive HR audit services aligned with the :2025 human capital reporting standard. Our goal is to help organizations assess, measure, and improve human capital performance and reporting.",
     overview:
-      "Our HR audit and human capital disclosure services empower organizations to gain actionable insights from their workforce data. We help you implement ISO 30414:2018 guidelines to enhance transparency, compliance, and strategic HR decision-making.",
+      "Our HR audit and human capital disclosure services empower organizations to gain actionable insights from their workforce data. We help you implement :2025 guidelines to enhance transparency, compliance, and strategic HR decision-making.",
     summary:
       "Human capital reporting transforms HR data into actionable insights that drive performance and stakeholder trust. It involves analyzing data from various HR processes and systems and presenting it in clear, concise dashboards and reports. This supports strategic decisions in recruitment, retention, and engagement while aligning with ESG goals. Human capital disclosure, including metrics in financial reports, is becoming critical for organizations aiming to demonstrate people-first strategies and transparency.",
     features: [
@@ -116,7 +116,7 @@ const serviceDetails = {
         ],
       },
       {
-        title: "ISO 30414:2018 Audit & Implementation",
+        title: "ISO 30414:2025 Audit & Implementation",
         description:
           "Implement international best practices for human capital reporting.",
         details: [
@@ -138,7 +138,7 @@ const serviceDetails = {
     ],
     process: [
       "Initial HR audit consultation",
-      "Gap analysis against ISO 30414 standards",
+      "Gap analysis against ISO 30414:2025 standards",
       "HR data collection and analysis",
       "Metric mapping and dashboard setup",
       "Reporting structure development",

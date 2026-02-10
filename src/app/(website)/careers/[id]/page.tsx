@@ -409,7 +409,7 @@ export default function JobDetailPage() {
               </Link>{" "}
               and{" "}
               <Link
-                href="/privacy#retention"
+                href="/retention"
                 className="text-[#F45625] underline hover:text-[#130F45] font-medium"
               >
                 Data Retention Policy
