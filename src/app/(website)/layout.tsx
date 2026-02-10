@@ -8,6 +8,7 @@ import { VisualEditing } from "next-sanity";
 import { SanityLive } from "@/app/lib/sanity.live";
 import { draftMode } from "next/headers";
 import Navbar from "../components/Navbar";
+import CookieConsentBanner from "../components/CookieConsentBanner";
 
 // Optimize font loading
 
@@ -41,6 +42,7 @@ export default async function UserLayout({
         </main>
 
         <Footer />
+        <CookieConsentBanner />
         {/* <!-- Google tag (gtag.js) --> */}
       </div>
     </>

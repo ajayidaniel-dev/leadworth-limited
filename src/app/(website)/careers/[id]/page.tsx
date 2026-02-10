@@ -409,10 +409,10 @@ export default function JobDetailPage() {
               </Link>{" "}
               and{" "}
               <Link
-                href="/cookies"
+                href="/privacy#retention"
                 className="text-[#F45625] underline hover:text-[#130F45] font-medium"
               >
-                Cookie Policy
+                Data Retention Policy
               </Link>{" "}
               before proceeding with your application.
             </p>
@@ -428,7 +428,8 @@ export default function JobDetailPage() {
                 htmlFor="policy-agreement"
                 className="text-gray-700 cursor-pointer select-none"
               >
-                I have read and agree to the Privacy Policy and Cookie Policy.
+                I have read and agree to the Privacy Policy and Data Retention
+                Policy.
               </label>
             </div>
             <button

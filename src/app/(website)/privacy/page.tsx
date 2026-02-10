@@ -10,6 +10,7 @@ const sectionIds = [
   "section-5",
   "section-6",
   "section-7",
+  "retention",
   "section-8",
   "section-9",
   "section-10",
@@ -24,6 +25,7 @@ const tocItems = [
   "Disclosure of information",
   "Your rights and contact",
   "Cookies policy",
+  "Data retention policy",
   "Complaints and data accuracy",
   "Amendments",
   "User acknowledgment",
@@ -95,6 +97,15 @@ export default function PrivacyPolicyPage() {
                     information entrusted to us by our clients, job applicants,
                     website visitors, and other third parties with whom we
                     engage.
+                  </p>
+                  <p className="mb-4">
+                    We installed CCTV at strategic locations across our office
+                    premises to monitor movement in and out. We place a notice to
+                    this effect at the entrance of our premises for the guidance
+                    of every visitor. In addition, you may be required to provide
+                    your personal details in a data protection-compliant visitor
+                    register, mainly to monitor movement in and out of our
+                    premises.
                   </p>
                   <p className="mb-4">
                     This Privacy Policy outlines our practices regarding the
@@ -229,6 +240,15 @@ export default function PrivacyPolicyPage() {
                     includes search engines, corporate websites, and
                     professional networking platforms where you have chosen to
                     make your profile public.
+                  </p>
+                  <p className="mb-4">
+                    We have installed CCTV cameras at strategic locations
+                    throughout our office to monitor building access and enhance
+                    security. In accordance with privacy regulations, clear
+                    signage is posted at all entrances to notify visitors. In
+                    addition, all guests are required to provide their details in
+                    our data protection compliance visitor register to assist
+                    with our ongoing movement monitoring and security protocols.
                   </p>
                   <h4 className="text-base font-semibold text-[#130F45] mb-2">
                     b. Direct submissions
@@ -496,6 +516,7 @@ export default function PrivacyPolicyPage() {
                     <li>Background screening and identity verification.</li>
                     <li>Search engine optimization and digital analytics.</li>
                     <li>Marketing and advertising activities.</li>
+                    <li>Cv analysis for prospective applicants and job seekers.</li>
                   </ul>
                   <h3 className="text-lg font-semibold text-[#F45625] mb-2">
                     5.3. Data protection standards for third parties
@@ -546,7 +567,7 @@ export default function PrivacyPolicyPage() {
                     </li>
                     <li>
                       Contacting us directly at any time via the details
-                      provided in Section 6.5.
+                      provided in Section 6.6.
                     </li>
                   </ul>
                   <h3 className="text-lg font-semibold text-[#F45625] mb-2">
@@ -639,7 +660,23 @@ export default function PrivacyPolicyPage() {
                     below to ensure our records remain up to date.
                   </p>
                   <h3 className="text-lg font-semibold text-[#F45625] mb-2">
-                    6.5. Contact and complaints
+                    6.5. How long your data is retained
+                  </h3>
+                  <p className="mb-6">
+                    We retain data for not more than five (5) years, and this is
+                    determined by the purposes for which your data was collected.
+                    Thereafter, we securely dispose of it in accordance with our
+                    data retention policies (see our{" "}
+                    <a
+                      href="#retention"
+                      className="text-[#F45625] underline hover:text-[#130F45]"
+                    >
+                      Data Retention Policy
+                    </a>
+                    ).
+                  </p>
+                  <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                    6.6. Contact and complaints
                   </h3>
                   <p className="mb-2">
                     If you have questions regarding this Privacy Policy or
@@ -682,12 +719,13 @@ export default function PrivacyPolicyPage() {
                     7.1. Purpose and usage
                   </h3>
                   <p className="mb-6">
-                    Leadworth Consulting utilizes &quot;cookies&quot; and
-                    similar tracking technologies to enhance your digital
-                    experience and understand user behavior. These small text
-                    files are stored on your browser and allow us to analyze
-                    website traffic, identify popular site features, and
-                    optimize our service delivery.
+                    Leadworth Consulting uses secure Cookies to ensure data
+                    security. We utilize &quot;cookies&quot; and similar
+                    tracking technologies to enhance your digital experience and
+                    understand user behavior. These small text files are stored
+                    on your browser and allow us to analyze website traffic,
+                    identify popular site features, and optimize our service
+                    delivery.
                   </p>
                   <h3 className="text-lg font-semibold text-[#F45625] mb-2">
                     7.2. Data privacy in tracking
@@ -715,19 +753,140 @@ export default function PrivacyPolicyPage() {
                     For full details on data retention and cookie-related
                     practices, see our{" "}
                     <Link
-                      href="/cookies"
+                      href="/privacy#retention"
                       className="text-[#F45625] underline hover:text-[#130F45]"
                     >
-                      Cookie Policy
+                      Data Retention Policy
                     </Link>
                     .
                   </p>
                 </div>
 
-                {/* Section 8 */}
-                <div id={sectionIds[7]}>
+                {/* Section 8 - Data Retention Policy */}
+                <div id="retention">
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    8. Complaints and data accuracy
+                    8. Data retention policy
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                        Introduction
+                      </h3>
+                      <p className="mb-4">
+                        The purpose of this policy is to establish a uniform
+                        standard for data retention at LWC. We strive to retain
+                        data strictly for the duration necessary to satisfy the
+                        objectives for which it was originally obtained. Upon
+                        the expiration of the required retention period,
+                        LWC&apos;s protocol requires the complete erasure of
+                        such data.
+                      </p>
+                      <p>
+                        These guidelines are to be strictly adhered to by all
+                        organizational units to ensure regulatory compliance and
+                        operational integrity.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                        Scope
+                      </h3>
+                      <p>
+                        This policy encompasses all data collected by LWC and
+                        stored on company-owned or leased systems and media,
+                        irrespective of geographic location. It applies to all
+                        formats, including electronic records (such as
+                        photographs, video, and audio recordings) and physical
+                        hard-copy files. Retention requirements are governed by
+                        the Nigeria Data Protection Act (NDPA) 2023, the EU
+                        General Data Protection Regulation (GDPR), and defined
+                        legitimate business interests.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                        Reasons for data retention
+                      </h3>
+                      <p className="mb-4">
+                        LWC maintains only the data essential for its
+                        operational efficiency, the fulfillment of its mission,
+                        and strict adherence to all applicable laws and
+                        regulations. LWC maintains data for the following
+                        legitimate purposes:
+                      </p>
+                      <ol className="list-decimal pl-6 space-y-2">
+                        <li><strong>Service Delivery &amp; Stakeholder Engagement:</strong> To facilitate ongoing services for data subjects, including newsletters and program updates, training programs, payroll and employee benefits.</li>
+                        <li><strong>Statutory &amp; Financial Compliance:</strong> To adhere to legal requirements for financial reporting and regulatory disclosures.</li>
+                        <li><strong>Legal &amp; Administrative Obligations:</strong> To ensure compliance with labor, taxation, and immigration laws.</li>
+                        <li><strong>Regulatory Adherence:</strong> To satisfy industry-specific or governmental regulatory requirements.</li>
+                        <li><strong>Security &amp; Risk Management:</strong> To support security incident investigations or forensic inquiries.</li>
+                        <li><strong>Asset &amp; Legal Protection:</strong> To facilitate preservation of intellectual property and management of litigation.</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                        Data duplication
+                      </h3>
+                      <p>
+                        LWC prioritizes the elimination of redundant data
+                        storage to optimize system efficiency and security.
+                        Multiple copies may be maintained where justified by
+                        operational necessity. This policy applies universally to
+                        all data in LWC&apos;s possession, including backup and
+                        duplicate copies.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                        Retention requirements
+                      </h3>
+                      <p className="mb-4">
+                        LWC has set the following guidelines for retaining all
+                        personal data as defined in its data privacy policy:
+                      </p>
+                      <ol className="list-decimal pl-6 space-y-2">
+                        <li>Website visitor data will be retained as long as necessary to provide the service requested/initiated through the LWC website.</li>
+                        <li>Personal data of Guarantors, Contractors, Subcontractors and Vendors will be kept for the duration of the contract or agreement.</li>
+                        <li>Employee data will be held for the duration of employment and then five years after the last day of employment.</li>
+                        <li>Data associated with employee wages, leave and pension shall be held for the period of employment plus five years.</li>
+                        <li>Recruitment data, including interview notes of unsuccessful applicants, will be held for one year after the closing of the position recruitment process.</li>
+                        <li>Consultant (both paid and pro bono) data will be held for the duration of the consulting contract plus two years after the end of the consultancy.</li>
+                        <li>Data associated with tax payments (including payroll, corporate, and VAT) will be held for five years.</li>
+                        <li>Operational data related to business proposals, reporting, and training programs will be held for the period required by LWC&apos;s Management, but not more than five years.</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#F45625] mb-2">
+                        Data destruction
+                      </h3>
+                      <p className="mb-4">
+                        To ensure responsible data management, LWC mandates the
+                        active destruction of data once its retention period has
+                        lapsed. Employees who believe certain information
+                        warrants further retention must report this to their
+                        supervisor with a formal justification. All policy
+                        exceptions are subject to approval by the Data
+                        Protection Officer and legal counsel. A litigation hold
+                        may be implemented by the legal department in rare
+                        instances, overriding standard destruction protocols to
+                        preserve evidence for legal matters.
+                      </p>
+                      <p>
+                        If you have questions about this policy or your data,
+                        please{" "}
+                        <Link href="/contact" className="text-[#F45625] underline hover:text-[#130F45]">
+                          contact us
+                        </Link>
+                        .
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 9 */}
+                <div id={sectionIds[8]}>
+                  <h2 className="text-2xl font-bold text-[#130F45] mb-4">
+                    9. Complaints and data accuracy
                   </h2>
                   <p className="mb-4">
                     You have the right to lodge a formal complaint at any time
@@ -751,10 +910,10 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 9 */}
-                <div id={sectionIds[8]}>
+                {/* Section 10 */}
+                <div id={sectionIds[9]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    9. Amendments to this policy
+                    10. Amendments to this policy
                   </h2>
                   <p>
                     As our services evolve and technology advances, we may
@@ -766,10 +925,10 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 10 */}
-                <div id={sectionIds[9]}>
+                {/* Section 11 */}
+                <div id={sectionIds[10]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    10. User acknowledgment
+                    11. User acknowledgment
                   </h2>
                   <p>
                     By accessing our website and utilizing our services, you
@@ -778,10 +937,10 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 11 */}
-                <div id={sectionIds[10]}>
+                {/* Section 12 */}
+                <div id={sectionIds[11]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    11. Dispute resolution and governing law
+                    12. Dispute resolution and governing law
                   </h2>
                   <h3 className="text-lg font-semibold text-[#F45625] mb-2">
                     11.1. Amicable settlement

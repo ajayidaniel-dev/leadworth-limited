@@ -263,6 +263,12 @@ export default function AboutPage() {
                   Background Verification
                 </span>
               </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00AEEF] rounded-full"></div>
+                <span className="text-gray-700 text-sm">
+                  Data Privacy & Protection
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -431,9 +437,9 @@ export default function AboutPage() {
       </section>
 
       {/* Meet the Team */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className="max-w-7xl mx-auto px-4 py-16">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-[#130F45] mb-8 text-center">
-          Meet the Team
+          Meet our Managing Consultant
         </h2>
         {/* center this incase it is just one */}
         <div className="flex justify-center flex-wrap gap-8">
@@ -443,7 +449,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="w-full sm:w-[45%] md:w-[22%] bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 p-6 flex flex-col items-center text-center hover:shadow-2xl hover:border-[#F45625] transition-all duration-300 group"
+              className="w-full sm:w-[45%] md:w-[30%] bg-white rounded-2xl shadow-lg border-2 border-[#F45625]/10 p-6 flex flex-col items-center text-center hover:shadow-2xl hover:border-[#F45625] transition-all duration-300 group"
             >
               <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-[#F45625]/20 group-hover:border-[#F45625] transition-all">
                 <Image
@@ -454,12 +460,13 @@ export default function AboutPage() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <h4 className="text-lg font-bold text-[#130F45] mb-1 group-hover:text-[#F45625] transition-colors">
+              <h4 className="text-lg font-bold text-[#130F45]  group-hover:text-[#F45625] transition-colors">
                 {member.name}
               </h4>
-              <h4 className="text-md font-medium text-[#130F45] mb-1 transition-colors">
+              <h4 className="text-[14px] font-medium text-[#130F45]  transition-colors">
                 {member.achievements}
               </h4>
+              <p className="text-[#F45625] font-semibold mb-2">{member.role}</p>
               <a
                 href={`mailto:${member.email}`}
                 target="_blank"
@@ -468,7 +475,6 @@ export default function AboutPage() {
               >
                 {member.email}
               </a>
-              <p className="text-[#F45625] font-semibold mb-2">{member.role}</p>
               {/* <p className="text-gray-600 text-sm mb-2">{member.funFact}</p> */}
               <Link
                 href={member.linkedin}
