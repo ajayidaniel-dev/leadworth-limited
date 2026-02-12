@@ -13,6 +13,7 @@ const sectionIds = [
   "section-8",
   "section-9",
   "section-10",
+  "section-11",
 ];
 
 const tocItems = [
@@ -22,6 +23,7 @@ const tocItems = [
   "Transmission, storage and security",
   "Disclosure of information",
   "Your rights and contact",
+  "Cookies policy",
   "Complaints and data accuracy",
   "Amendments",
   "User acknowledgment",
@@ -708,10 +710,31 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 7 */}
+                {/* Section 7 - Cookies policy */}
                 <div id={sectionIds[6]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    7. Complaints and data accuracy
+                    7. Cookies policy
+                  </h2>
+                  <p className="mb-4">
+                    We use secure cookies and similar technologies to improve
+                    your experience and analyze site traffic. We do not sell
+                    personal information collected via our website. For full
+                    details on how we use cookies and data privacy in tracking,
+                    see our{" "}
+                    <Link
+                      href="/cookies"
+                      className="text-[#F45625] underline hover:text-[#130F45]"
+                    >
+                      Cookies Policy
+                    </Link>
+                    .
+                  </p>
+                </div>
+
+                {/* Section 8 */}
+                <div id={sectionIds[7]}>
+                  <h2 className="text-2xl font-bold text-[#130F45] mb-4">
+                    8. Complaints and data accuracy
                   </h2>
                   <p className="mb-4">
                     You have the right to lodge a formal complaint at any time
@@ -735,10 +758,10 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 8 */}
-                <div id={sectionIds[7]}>
+                {/* Section 9 */}
+                <div id={sectionIds[8]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    8. Amendments to this policy
+                    9. Amendments to this policy
                   </h2>
                   <p>
                     As our services evolve and technology advances, we may
@@ -750,10 +773,10 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 9 */}
-                <div id={sectionIds[8]}>
+                {/* Section 10 */}
+                <div id={sectionIds[9]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    9. User acknowledgment
+                    10. User acknowledgment
                   </h2>
                   <p>
                     By accessing our website and utilizing our services, you
@@ -762,10 +785,10 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
 
-                {/* Section 10 */}
-                <div id={sectionIds[9]}>
+                {/* Section 11 */}
+                <div id={sectionIds[10]}>
                   <h2 className="text-2xl font-bold text-[#130F45] mb-4">
-                    10. Dispute resolution and governing law
+                    11. Dispute resolution and governing law
                   </h2>
                   <h3 className="text-lg font-semibold text-[#F45625] mb-2">
                     11.1. Amicable settlement

@@ -159,10 +159,6 @@ export default function RetentionPolicyPage() {
               </p>
               <ol className="list-decimal pl-6 space-y-3">
                 <li>
-                  LWC has set the following guidelines for retaining all
-                  personal data as defined in its data privacy policy.
-                </li>
-                <li>
                   Website visitor data will be retained as long as necessary to
                   provide the service requested/initiated through the LWC
                   website.
