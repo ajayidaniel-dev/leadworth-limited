@@ -96,15 +96,7 @@ export default function PrivacyPolicyPage() {
                     website visitors, and other third parties with whom we
                     engage.
                   </p>
-                  <p className="mb-4">
-                    We installed CCTV at strategic locations across our office
-                    premises to monitor movement in and out. We place a notice
-                    to this effect at the entrance of our premises for the
-                    guidance of every visitor. In addition, you may be required
-                    to provide your personal details in a data
-                    protection-compliant visitor register, mainly to monitor
-                    movement in and out of our premises.
-                  </p>
+
                   <p className="mb-4">
                     This Privacy Policy outlines our practices regarding the
                     collection, use, and disclosure of personal data acquired
