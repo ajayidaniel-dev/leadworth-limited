@@ -1,14 +1,13 @@
 import "@/app/globals.css";
 import type { Metadata } from "next";
-import Footer from "@/app/components/Footer";
 
 import Script from "next/script";
 
 import { VisualEditing } from "next-sanity";
 import { SanityLive } from "@/app/lib/sanity.live";
 import { draftMode } from "next/headers";
-import Navbar from "../components/Navbar";
 import CookieConsentBanner from "../components/CookieConsentBanner";
+import WebsiteChrome from "../components/WebsiteChrome";
 
 // Optimize font loading
 
@@ -32,16 +31,11 @@ export default async function UserLayout({
       />
 
       <div className=" scroll-smooth transition-all duration-1000 mx-auto">
-        <Navbar />
-
-        {/* <Banner /> */}
-        <main className="pt-16 lg:pt-20">
+        <WebsiteChrome>
           {children}
           <SanityLive />
           {(await draftMode()).isEnabled && <VisualEditing />}
-        </main>
-
-        <Footer />
+        </WebsiteChrome>
         <CookieConsentBanner />
         {/* <!-- Google tag (gtag.js) --> */}
       </div>
