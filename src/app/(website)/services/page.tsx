@@ -43,6 +43,19 @@ const services = [
     cta: "/services/winresponse",
   },
   {
+    icon: (
+      <HiOutlineClipboardDocumentCheck className="w-8 h-8 text-[#F45625]" />
+    ),
+    title: "JobAble",
+    desc: "Paid career assessment and workshop to diagnose hiring blockers and sharpen how you position for the next role.",
+    features: [
+      "Career diagnosis, not generic advice",
+      "AI, automation, and job-search strategy",
+      "Clear view of strengths, gaps, and market fit",
+    ],
+    cta: "/services/jobable",
+  },
+  {
     icon: <HiOutlineDocumentPlus className="w-8 h-8 text-[#F45625]" />,
     title: "HR Audit & ISO 30414:2025",
     desc: "Assess, measure, and report workforce performance with global HR audit standards.",
@@ -379,7 +392,7 @@ export default function ServicesPage() {
     }
   };
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -734,6 +747,9 @@ export default function ServicesPage() {
                       </option>
                       <option value="WinResponse" className="bg-[#130F45]">
                         WinResponse
+                      </option>
+                      <option value="JobAble" className="bg-[#130F45]">
+                        JobAble
                       </option>
                       <option value="Recruitment" className="bg-[#130F45]">
                         Recruitment

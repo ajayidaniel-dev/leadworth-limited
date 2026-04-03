@@ -604,13 +604,19 @@ const serviceDetails = {
   },
 };
 
+/** Embed fills at least one viewport so footer sits below the fold until scroll. Navbar hidden via WebsiteChrome. Theme #395A7F. */
+const JOBABLE_EMBED = {
+  iframeSrc:
+    "https://jobable.winresponse.io/leadworth-consulting?theme=%23395A7F",
+  iframeTitle: "Candidates Embed",
+} as const;
+
 export default function ServicePage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = React.use(params);
-  const service = serviceDetails[slug as keyof typeof serviceDetails];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -621,6 +627,21 @@ export default function ServicePage({
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+
+  if (slug === "jobable") {
+    return (
+      <div className="relative isolate min-h-[100dvh] w-full">
+        <iframe
+          src={JOBABLE_EMBED.iframeSrc}
+          title={JOBABLE_EMBED.iframeTitle}
+          className="absolute inset-0 h-full min-h-[100dvh] w-full border-0 bg-white"
+          allow="clipboard-write"
+        />
+      </div>
+    );
+  }
+
+  const service = serviceDetails[slug as keyof typeof serviceDetails];
   if (!service) {
     return (
       <div className="min-h-screen flex items-center justify-center">
