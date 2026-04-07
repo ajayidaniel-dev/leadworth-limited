@@ -15,7 +15,6 @@ import {
   HiOutlinePresentationChartLine,
   HiOutlineWrenchScrewdriver,
   HiOutlinePhone,
-  HiOutlineDocumentPlus,
 } from "react-icons/hi2";
 import Link from "next/link";
 import Image from "next/image";
@@ -56,7 +55,15 @@ const services = [
     cta: "/services/jobable",
   },
   {
-    icon: <HiOutlineDocumentPlus className="w-8 h-8 text-[#F45625]" />,
+    icon: (
+      <Image
+        src="/iso.jpg"
+        alt="ISO 30414:2025 Logo"
+        width={48}
+        height={48}
+        className="object-contain"
+      />
+    ),
     title: "HR Audit & ISO 30414:2025",
     desc: "Assess, measure, and report workforce performance with global HR audit standards.",
     features: [
