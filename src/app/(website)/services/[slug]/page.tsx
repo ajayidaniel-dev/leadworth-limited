@@ -760,7 +760,7 @@ export default function ServicePage({
         },
         body: JSON.stringify({
           name: formData.name,
-          mail: `ajayidaniel.dev@gmail.com`,
+          mail: `info@leadworthconsulting.com`,
           subject: formData.service,
           html: htmlTemplate,
         }),
@@ -786,7 +786,7 @@ export default function ServicePage({
     }
   };
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));

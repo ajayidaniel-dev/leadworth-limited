@@ -75,7 +75,7 @@ export default function TrainingPage() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -130,7 +130,7 @@ export default function TrainingPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
-          mail: `ajayidaniel.dev@gmail.com`,
+          mail: `info@leadworthconsulting.com`,
           subject: `Training Form Submission from ${formData.name}`,
           html: htmlTemplate,
         }),
