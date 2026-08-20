@@ -607,7 +607,7 @@ const serviceDetails = {
 /** Embed fills at least one viewport so footer sits below the fold until scroll. Navbar hidden via WebsiteChrome. Theme #395A7F. */
 const JOBABLE_EMBED = {
   iframeSrc:
-    "https://jobable.winresponse.io/leadworth-consulting?theme=%23395A7F",
+    "https://jobable.winresponse.io/?slug=leadworth-consulting&theme=%23395A7F",
   iframeTitle: "Candidates Embed",
 } as const;
 
@@ -634,7 +634,16 @@ export default function ServicePage({
         <iframe
           src={JOBABLE_EMBED.iframeSrc}
           title={JOBABLE_EMBED.iframeTitle}
-          className="absolute inset-0 h-full min-h-[100dvh] w-full border-0 bg-white"
+          referrerPolicy="unsafe-url"
+          width="100%"
+          height="100%"
+          style={{
+            border: "none",
+            width: "100%",
+            height: "100vh",
+            overflow: "hidden",
+          }}
+          className="absolute inset-0 bg-white"
           allow="clipboard-write"
         />
       </div>
